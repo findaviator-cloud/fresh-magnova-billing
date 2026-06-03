@@ -553,7 +553,7 @@
                 <th style="width:8%">HSN/SAC</th>
                 <th style="width:9%">Quantity</th>
                 <th style="width:9%">Rate (₹)</th>
-                <th style="width:5%">per</th>
+                <th style="width:5%">Per/Unit</th>
                 <th style="width:13%">Amount (₹)</th>
                 <th class="no-print" style="width:4%"></th>
               </tr>
@@ -828,8 +828,8 @@ function addItemRow(targetId, preset={desc:'',hsn:'',qty:1,rate:0,gst:18,pkg:''}
     <td><input class="ihsn" placeholder="HSN" value="${escapeHtml(preset.hsn)}" style="width:70px;text-align:center"></td>
     <td><input class="iqty" type="number" min="0" step="0.001" value="${preset.qty}" style="width:65px;text-align:center"></td>
     <td><input class="irate" type="number" min="0" step="0.01" value="${preset.rate}" style="width:70px;text-align:right"></td>
-    <td style="text-align:center;font-size:.7rem;color:#555">${isSale?'PCS':''}</td>
-    <td class="line-amount" style="font-weight:700;color:#0e5c63;text-align:right;font-size:.75rem">₹0.00</td>
+    <td><input value="${isSale?'PCS':''}" style="width:45px;text-align:center;font-size:.7rem;border:none;outline:none;background:transparent;color:#555;font-family:inherit"></td>
+    <td><input class="line-amount iamount" type="number" min="0" step="0.01" value="0" style="width:70px;text-align:right;font-weight:700;color:#0e5c63;font-size:.75rem;border:none;outline:none;background:transparent;font-family:inherit"></td>
     <td class="no-print" style="text-align:center">
       <button onclick="delItemRow(this,'${targetId}')" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 6px;cursor:pointer;font-size:.7rem">✕</button>
     </td>`;
@@ -1365,7 +1365,7 @@ function printHistRecord(id){
   <div class="disp-row" style="grid-template-columns:1fr 1fr"><div class="dc"><span class="lbl">Transport Mode</span><span class="val" style="font-weight:700">${escapeHtml(r.transport||'BY ROAD')}</span></div><div class="dc"><span class="lbl">Motor Vehicle No.</span><span class="val" style="font-weight:700">${escapeHtml(r.vehicle||'')}</span></div></div>
   <div class="terms-row"><span class="lbl">Terms of Delivery</span><span style="font-weight:700;font-size:8pt">${escapeHtml(r.terms||'—')}</span></div>
   <table class="it">
-    <thead><tr><th style="width:4%">Sl<br>No.</th><th style="width:6%">No. &amp;<br>Kind<br>Pkgs.</th><th style="width:33%">Description of Goods</th><th style="width:9%">HSN/SAC</th><th style="width:10%">Quantity</th><th style="width:11%">Rate (₹)</th><th style="width:5%">per</th><th style="width:13%">Amount (₹)</th></tr></thead>
+    <thead><tr><th style="width:4%">Sl<br>No.</th><th style="width:6%">No. &amp;<br>Kind<br>Pkgs.</th><th style="width:33%">Description of Goods</th><th style="width:9%">HSN/SAC</th><th style="width:10%">Quantity</th><th style="width:11%">Rate (₹)</th><th style="width:5%">Per/Unit</th><th style="width:13%">Amount (₹)</th></tr></thead>
     <tbody>${itemRows}</tbody>
     <tfoot><tr><td colspan="7" style="text-align:right;font-weight:700;font-size:7.5pt">Sub Total</td><td style="text-align:right;font-weight:800">₹${Number(taxable).toFixed(2)}</td></tr></tfoot>
   </table>
