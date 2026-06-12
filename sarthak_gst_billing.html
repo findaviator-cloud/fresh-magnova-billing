@@ -571,10 +571,10 @@
           <!-- ROW 7+8: Footer -->
           <div style="border:1.5px solid #444;border-top:none">
             <!-- Top: Bank + Totals + Sarthak -->
-            <div style="display:grid;grid-template-columns:1fr 280px 200px;border-bottom:1px solid #888">
+            <div style="display:grid;grid-template-columns:1fr 200px 280px;border-bottom:1px solid #888">
               <!-- Bank Details -->
               <div style="padding:6px;border-right:1px solid #888">
-                <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#0e5c63;margin-bottom:3px;border-bottom:1px dashed #ccc;padding-bottom:2px">Bank Details</div>
+                <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#0e5c63;margin-bottom:3px;border-bottom:1px dashed #ccc;padding-bottom:2px">Bank Details / Firm Details</div>
                 <div style="font-size:.7rem;line-height:1.7">
                   <strong>A/c Name:</strong> <input class="cinput" id="bankAccName" value="SARTHAK SOLUTION SALES" style="width:160px"><br>
                   <strong>Bank:</strong> <input class="cinput" id="bankName" value="STATE BANK OF INDIA" style="width:150px"> &nbsp;|&nbsp;
@@ -1373,7 +1373,7 @@ function printHistRecord(id){
   </table>
   <div class="foot-split">
     <div class="fl">
-      <div style="font-size:6.5pt;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#0e5c63;margin-bottom:2pt;border-bottom:0.5pt dashed #ccc;padding-bottom:1pt">Bank Details</div>
+      <div style="font-size:6.5pt;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#0e5c63;margin-bottom:2pt;border-bottom:0.5pt dashed #ccc;padding-bottom:1pt">Bank Details / Firm Details</div>
       <div style="font-size:7pt;line-height:1.7"><strong>A/c Name:</strong> ${escapeHtml(r.bankAccName||'SARTHAK SOLUTION SALES')}<br><strong>Bank:</strong> ${escapeHtml(r.bankName||'STATE BANK OF INDIA')} | <strong>IFSC:</strong> ${escapeHtml(r.bankIfsc||'SBIN0012223')}<br><strong>A/c No.:</strong> ${escapeHtml(r.bankAccNo||'37519112216')} | <strong>Branch:</strong> ${escapeHtml(r.bankBranch||'PANDEYPUR')}</div>
     </div>
     <div class="fr">
