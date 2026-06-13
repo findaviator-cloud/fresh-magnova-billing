@@ -851,7 +851,7 @@
 // ══════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════
-const state = { sales:[], purchases:[], notes:[], payments:[], fy:'2025-26' };
+const state = { sales:[], purchases:[], notes:[], payments:JSON.parse(localStorage.getItem('sss_v1_payments')||'[]'), fy:'2025-26' };
 
 let histRecords = (function(){
   try{ return JSON.parse(localStorage.getItem('sss_v1_records')||'[]'); }
@@ -1072,6 +1072,7 @@ function savePayment(){
   const dateVal=document.getElementById('paymentDate').value||today();
   const payment={mode:document.getElementById('paymentMode').value,party:document.getElementById('paymentParty').value,amount:Number(document.getElementById('paymentAmount').value||0),date:dateVal,remarks:document.getElementById('paymentRemarks').value,fy:fyOf(dateVal)};
   state.payments.push(payment);
+  storageSave('sss_v1_payments', state.payments);
   renderPayments(); renderLedger(); renderDashboard();
   ['paymentParty','paymentAmount','paymentRemarks'].forEach(id=>document.getElementById(id).value='');
   showToast('✅ Payment saved.');
