@@ -367,6 +367,11 @@
         <button data-page="history">🗂️ Invoice History</button>
         <button data-page="settings">⚙️ Financial Year</button>
       </div>
+      <div class="nav-group">
+        <div class="nav-label">More</div>
+        <button data-page="purchaseorders">🛒 Purchase Orders</button>
+        <button data-page="cashflow">💰 Cash Flow</button>
+      </div>
     </div>
   </aside>
 
@@ -403,8 +408,8 @@
             <div class="list-item"><span>Smart Parser — offline, no AI needed</span><span class="tag">Enabled</span></div>
             <div class="list-item"><span>Inventory tracking with live stock</span><span class="tag">Enabled</span></div>
             <div class="list-item"><span>Invoice history with export / import</span><span class="tag">Enabled</span></div>
-            <div class="list-item"><span>Purchase orders and vendor management</span><span class="tag" style="background:rgba(154,90,0,.12);color:var(--color-warning)">Coming Soon</span></div>
-            <div class="list-item"><span>Cash flow and expense tracking</span><span class="tag" style="background:rgba(154,90,0,.12);color:var(--color-warning)">Coming Soon</span></div>
+            <div class="list-item"><span>Purchase orders and vendor management</span><span class="tag" style="background:rgba(14,92,99,.12);color:var(--color-primary)">Enabled</span></div>
+            <div class="list-item"><span>Cash flow and expense tracking</span><span class="tag" style="background:rgba(14,92,99,.12);color:var(--color-primary)">Enabled</span></div>
           </div></div>
           <div class="card"><h3>Available Modules</h3><div class="list">
             <div class="list-item"><span>Sale and purchase entry</span><span>2 forms</span></div>
@@ -762,6 +767,69 @@
       </section>
 
       <!-- ══════════ SETTINGS ══════════ -->
+
+      <!-- ══════════ PURCHASE ORDERS ══════════ -->
+      <section id="purchaseorders" class="page">
+        <div class="page-head"><div><div class="page-title">🛒 Purchase Orders</div><p class="muted">Create and manage vendor purchase orders.</p></div></div>
+        <div class="toolbar no-print" style="gap:.5rem;flex-wrap:wrap">
+          <input id="poVendor" class="cinput" placeholder="Vendor Name" style="width:180px">
+          <input id="poItem" class="cinput" placeholder="Item / Description" style="width:200px">
+          <input id="poQty" class="cinput" type="number" placeholder="Qty" style="width:80px">
+          <input id="poRate" class="cinput" type="number" placeholder="Rate ₹" style="width:100px">
+          <input id="poDate" class="cinput" type="date" style="width:140px">
+          <button onclick="addPO()" style="background:var(--color-primary);color:#fff;border:none;padding:.45rem 1rem;border-radius:var(--radius-md);cursor:pointer;font-weight:700">+ Add Order</button>
+        </div>
+        <div style="overflow-x:auto;margin-top:1rem">
+          <table style="width:100%;border-collapse:collapse;font-size:var(--text-sm)">
+            <thead><tr style="background:var(--color-surface-alt);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.05em">
+              <th style="padding:.5rem;text-align:left;border-bottom:1px solid var(--color-border)">#</th>
+              <th style="padding:.5rem;text-align:left;border-bottom:1px solid var(--color-border)">Date</th>
+              <th style="padding:.5rem;text-align:left;border-bottom:1px solid var(--color-border)">Vendor</th>
+              <th style="padding:.5rem;text-align:left;border-bottom:1px solid var(--color-border)">Item</th>
+              <th style="padding:.5rem;text-align:right;border-bottom:1px solid var(--color-border)">Qty</th>
+              <th style="padding:.5rem;text-align:right;border-bottom:1px solid var(--color-border)">Rate</th>
+              <th style="padding:.5rem;text-align:right;border-bottom:1px solid var(--color-border)">Amount</th>
+              <th style="padding:.5rem;text-align:center;border-bottom:1px solid var(--color-border)">Status</th>
+              <th style="padding:.5rem;text-align:center;border-bottom:1px solid var(--color-border)">Action</th>
+            </tr></thead>
+            <tbody id="poTableBody"></tbody>
+          </table>
+          <div id="poEmpty" style="text-align:center;padding:2rem;color:var(--color-text-faint)">No purchase orders yet. Add one above.</div>
+        </div>
+      </section>
+
+      <!-- ══════════ CASH FLOW ══════════ -->
+      <section id="cashflow" class="page">
+        <div class="page-head"><div><div class="page-title">💰 Cash Flow</div><p class="muted">Track income, expenses and daily cash balance.</p></div></div>
+        <div class="toolbar no-print" style="gap:.5rem;flex-wrap:wrap">
+          <select id="cfType" class="cinput" style="width:120px">
+            <option value="income">💚 Income</option>
+            <option value="expense">🔴 Expense</option>
+          </select>
+          <input id="cfDesc" class="cinput" placeholder="Description" style="width:200px">
+          <input id="cfAmount" class="cinput" type="number" placeholder="Amount ₹" style="width:120px">
+          <input id="cfDate" class="cinput" type="date" style="width:140px">
+          <button onclick="addCF()" style="background:var(--color-primary);color:#fff;border:none;padding:.45rem 1rem;border-radius:var(--radius-md);cursor:pointer;font-weight:700">+ Add Entry</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin:1rem 0">
+          <div class="kpi-card"><div class="kpi-label">Total Income</div><div class="kpi-val" id="cfTotalIncome" style="color:#16a34a">₹0.00</div></div>
+          <div class="kpi-card"><div class="kpi-label">Total Expense</div><div class="kpi-val" id="cfTotalExpense" style="color:#dc2626">₹0.00</div></div>
+          <div class="kpi-card"><div class="kpi-label">Net Balance</div><div class="kpi-val" id="cfNetBalance">₹0.00</div></div>
+        </div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:var(--text-sm)">
+            <thead><tr style="background:var(--color-surface-alt);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.05em">
+              <th style="padding:.5rem;text-align:left;border-bottom:1px solid var(--color-border)">Date</th>
+              <th style="padding:.5rem;text-align:left;border-bottom:1px solid var(--color-border)">Type</th>
+              <th style="padding:.5rem;text-align:left;border-bottom:1px solid var(--color-border)">Description</th>
+              <th style="padding:.5rem;text-align:right;border-bottom:1px solid var(--color-border)">Amount</th>
+              <th style="padding:.5rem;text-align:center;border-bottom:1px solid var(--color-border)">Action</th>
+            </tr></thead>
+            <tbody id="cfTableBody"></tbody>
+          </table>
+          <div id="cfEmpty" style="text-align:center;padding:2rem;color:var(--color-text-faint)">No entries yet. Add income or expense above.</div>
+        </div>
+      </section>
       <section id="settings" class="page">
         <div class="page-head"><div><div class="page-title">Financial Year</div><p class="muted">Switch the accounting view by financial year.</p></div></div>
         <div class="two-col">
@@ -1462,6 +1530,104 @@ function handleTransportMode(sel){
   renderAll();
   buildHistYearFilter();
 })();
+// ── PURCHASE ORDERS ──
+let poList = JSON.parse(localStorage.getItem('poList')||'[]');
+function renderPO(){
+  const tb=document.getElementById('poTableBody');
+  const em=document.getElementById('poEmpty');
+  if(!tb)return;
+  tb.innerHTML='';
+  if(!poList.length){em.style.display='block';return;}
+  em.style.display='none';
+  poList.forEach((p,i)=>{
+    const tr=document.createElement('tr');
+    tr.style.borderBottom='1px solid var(--color-border)';
+    tr.innerHTML=`<td style="padding:.5rem">${i+1}</td>
+      <td style="padding:.5rem">${p.date}</td>
+      <td style="padding:.5rem;font-weight:700">${p.vendor}</td>
+      <td style="padding:.5rem">${p.item}</td>
+      <td style="padding:.5rem;text-align:right">${p.qty}</td>
+      <td style="padding:.5rem;text-align:right">&#8377;${parseFloat(p.rate).toFixed(2)}</td>
+      <td style="padding:.5rem;text-align:right;font-weight:700;color:var(--color-primary)">&#8377;${(p.qty*p.rate).toFixed(2)}</td>
+      <td style="padding:.5rem;text-align:center"><span style="padding:2px 8px;border-radius:8px;font-size:.7rem;font-weight:700">${p.status}</span></td>
+      <td style="padding:.5rem;text-align:center">
+        <button onclick="togglePOStatus(${i})" style="font-size:.7rem;padding:2px 6px;border:1px solid var(--color-border);border-radius:4px;cursor:pointer">Receive</button>
+        <button onclick="deletePO(${i})" style="font-size:.7rem;padding:2px 6px;border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:4px;cursor:pointer">X</button>
+      </td>`;
+    tb.appendChild(tr);
+  });
+}
+function addPO(){
+  const vendor=document.getElementById('poVendor').value.trim();
+  const item=document.getElementById('poItem').value.trim();
+  const qty=parseFloat(document.getElementById('poQty').value)||0;
+  const rate=parseFloat(document.getElementById('poRate').value)||0;
+  const date=document.getElementById('poDate').value||new Date().toISOString().split('T')[0];
+  if(!vendor||!item||!qty||!rate){alert('Vendor, Item, Qty aur Rate required hai!');return;}
+  poList.unshift({vendor,item,qty,rate,date,status:'Pending'});
+  localStorage.setItem('poList',JSON.stringify(poList));
+  renderPO();
+  ['poVendor','poItem','poQty','poRate'].forEach(id=>document.getElementById(id).value='');
+}
+function togglePOStatus(i){
+  poList[i].status=poList[i].status==='Pending'?'Received':'Pending';
+  localStorage.setItem('poList',JSON.stringify(poList));
+  renderPO();
+}
+function deletePO(i){
+  if(!confirm('Delete this order?'))return;
+  poList.splice(i,1);
+  localStorage.setItem('poList',JSON.stringify(poList));
+  renderPO();
+}
+
+// ── CASH FLOW ──
+let cfList = JSON.parse(localStorage.getItem('cfList')||'[]');
+function renderCF(){
+  const tb=document.getElementById('cfTableBody');
+  const em=document.getElementById('cfEmpty');
+  if(!tb)return;
+  tb.innerHTML='';
+  let inc=0,exp=0;
+  cfList.forEach(c=>{if(c.type==='income')inc+=c.amount;else exp+=c.amount;});
+  const net=inc-exp;
+  document.getElementById('cfTotalIncome').textContent='&#8377;'+inc.toFixed(2);
+  document.getElementById('cfTotalExpense').textContent='&#8377;'+exp.toFixed(2);
+  const nb=document.getElementById('cfNetBalance');
+  nb.textContent='&#8377;'+net.toFixed(2);
+  nb.style.color=net>=0?'#16a34a':'#dc2626';
+  if(!cfList.length){em.style.display='block';return;}
+  em.style.display='none';
+  cfList.forEach((c,i)=>{
+    const tr=document.createElement('tr');
+    tr.style.borderBottom='1px solid var(--color-border)';
+    tr.innerHTML=`<td style="padding:.5rem">${c.date}</td>
+      <td style="padding:.5rem">${c.type==='income'?'Income':'Expense'}</td>
+      <td style="padding:.5rem">${c.desc}</td>
+      <td style="padding:.5rem;text-align:right;font-weight:700">&#8377;${c.amount.toFixed(2)}</td>
+      <td style="padding:.5rem;text-align:center"><button onclick="deleteCF(${i})" style="font-size:.7rem;padding:2px 6px;border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:4px;cursor:pointer">X</button></td>`;
+    tb.appendChild(tr);
+  });
+}
+function addCF(){
+  const type=document.getElementById('cfType').value;
+  const desc=document.getElementById('cfDesc').value.trim();
+  const amount=parseFloat(document.getElementById('cfAmount').value)||0;
+  const date=document.getElementById('cfDate').value||new Date().toISOString().split('T')[0];
+  if(!desc||!amount){alert('Description aur Amount required hai!');return;}
+  cfList.unshift({type,desc,amount,date});
+  localStorage.setItem('cfList',JSON.stringify(cfList));
+  renderCF();
+  document.getElementById('cfDesc').value='';
+  document.getElementById('cfAmount').value='';
+}
+function deleteCF(i){
+  if(!confirm('Delete this entry?'))return;
+  cfList.splice(i,1);
+  localStorage.setItem('cfList',JSON.stringify(cfList));
+  renderCF();
+}
+renderPO();renderCF();
 </script>
 
 <div style="text-align:center;padding:8px;font-size:0.72rem;color:#9a9488;border-top:1px solid #e5dfd4;margin-top:12px;font-family:'Satoshi',Arial,sans-serif">
