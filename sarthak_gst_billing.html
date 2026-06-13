@@ -874,7 +874,7 @@ function updateVoucher(type){
   [...tbody.querySelectorAll('tr')].forEach((tr,i)=>{
     const item=items[i]||{amount:0};
     const ac=tr.querySelector('.line-amount');
-    if(ac){ if(ac.tagName==='INPUT') ac.value=item.amount.toFixed(2); else ac.textContent=inr(item.amount); }
+    if(ac){ if(ac.tagName==='INPUT') ac.value=item.amount.toFixed(2); }
     if(items[i]){taxable+=item.amount;tax+=item.amount*(item.gst/100);}
   });
   const igst = typeof igstActive !== 'undefined' && igstActive ? tax : 0;
