@@ -535,13 +535,7 @@
                 <div style="font-size:.7rem"><strong>Place of Supply:</strong> <input class="cinput" id="salePlace" value="VARANASI" style="width:100px"></div>
                 <div style="font-size:.7rem;margin-top:2px"><strong>E-Way Bill No.:</strong> <input class="cinput" id="saleEway" placeholder="—" style="width:110px"></div>
                 <div style="font-size:.7rem;margin-top:2px"><strong>Transport Mode:</strong>
-                  <select class="cinput" id="saleTransportMode" onchange="handleTransportMode(this)" style="font-weight:700;width:110px">
-                    <option value="BY ROAD">BY ROAD</option>
-                    <option value="BY RAIL">BY RAIL</option>
-                    <option value="BY AIR">BY AIR</option>
-                    <option value="BY COURIER">BY COURIER</option>
-                    <option value="OTHER">OTHER</option>
-                  </select>
+                  <input class="cinput" id="saleTransportMode" placeholder="e.g. BY ROAD" style="font-weight:700;width:110px">
                 </div>
                 <div style="font-size:.7rem;margin-top:2px"><strong>Motor Vehicle No.:</strong> <input class="cinput" id="saleVehicle" placeholder="e.g. HR87F6229" style="width:110px;font-weight:700"></div>
                 <div style="font-size:.7rem;margin-top:2px"><strong>Terms of Delivery:</strong> <input class="cinput" id="saleTerms" placeholder="e.g. 12026104X02" style="width:110px;font-weight:700"></div>
@@ -1016,7 +1010,7 @@ function saveSaleToHistory(){
     buyercontact:document.getElementById('saleBuyerContact').value,
     buyerstate:document.getElementById('saleBuyerState').value,
     place:document.getElementById('salePlace').value,
-    transport:document.getElementById('saleTransport').value,
+    transport:document.getElementById('saleTransportMode').value||document.getElementById('saleTransport').value,
     vehicle:document.getElementById('saleVehicle').value,
     ewaybill:document.getElementById('saleEway').value,
     lr:document.getElementById('saleLR')?document.getElementById('saleLR').value:'',
