@@ -1009,7 +1009,7 @@ function saveSaleToHistory(){
     buyername:document.getElementById('saleBuyer').value,
     buyergstin:gstin,
     buyeraddress:document.getElementById('saleBuyerAddress').value,
-    buyercontact:document.getElementById('saleBuyerContact').value,
+    buyercontact:document.getElementById('saleBuyerContact')?document.getElementById('saleBuyerContact').value:'',
     buyerstate:document.getElementById('saleBuyerState').value,
     place:document.getElementById('salePlace').value,
     transport:document.getElementById('saleTransportMode').value||document.getElementById('saleTransport').value,
