@@ -845,7 +845,7 @@
 // ══════════════════════════════════════════════
 // STATE
 // ══════════════════════════════════════════════
-const state = { sales:[], purchases:[], notes:[], payments:JSON.parse(localStorage.getItem('sss_v1_payments')||'[]'), fy:'2025-26' };
+const state = { sales:JSON.parse(localStorage.getItem('sss_v1_sales')||'[]'), purchases:JSON.parse(localStorage.getItem('sss_v1_purchases')||'[]'), notes:JSON.parse(localStorage.getItem('sss_v1_notes')||'[]'), payments:JSON.parse(localStorage.getItem('sss_v1_payments')||'[]'), fy:'2025-26' };
 
 let histRecords = (function(){
   try{ return JSON.parse(localStorage.getItem('sss_v1_records')||'[]'); }
@@ -1057,7 +1057,7 @@ function printSaleDoc(){ window.print(); }
 // ── NOTE / PAYMENT ──
 function saveNote(){
   const note={type:document.getElementById('noteType').value,party:document.getElementById('noteParty').value,ref:document.getElementById('noteRef').value,amount:Number(document.getElementById('noteAmount').value||0),reason:document.getElementById('noteReason').value};
-  state.notes.push(note); renderNotes();
+  state.notes.push(note); storageSave('sss_v1_notes', state.notes); renderNotes();
   ['noteParty','noteRef','noteAmount','noteReason'].forEach(id=>document.getElementById(id).value='');
   showToast('✅ Note saved.');
 }
