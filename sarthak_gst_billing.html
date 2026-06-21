@@ -988,7 +988,9 @@ function saveVoucher(type){
   const party=document.getElementById(type==='sale'?'saleBuyer':'purchaseParty').value||'Unknown Party';
   const ref=document.getElementById(type==='sale'?'saleInvoiceNo':'purchaseBillNo').value||'-';
   const record={date,party,ref,...calc,fy:fyOf(date)};
-  state[type==='sale'?'sales':'purchases'].push(record);
+  const stateKey=type==='sale'?'sales':'purchases';
+  state[stateKey].push(record);
+  storageSave('sss_v1_'+stateKey, state[stateKey]);
   renderAll();
   showToast(`✅ ${type==='sale'?'Sale':'Purchase'} saved to registers.`);
 }
