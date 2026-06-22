@@ -852,6 +852,31 @@ let histRecords = (function(){
   catch(e){ return []; }
 })();
 
+function deleteNote(i){
+  if(!confirm('Delete this note?')) return;
+  state.notes.splice(i,1);
+  storageSave('sss_v1_notes', state.notes);
+  renderNotes();
+}
+function deletePayment(i){
+  if(!confirm('Delete this payment?')) return;
+  state.payments.splice(i,1);
+  storageSave('sss_v1_payments', state.payments);
+  renderPayments(); renderLedger(); renderDashboard();
+}
+function deleteSale(i){
+  if(!confirm('Delete this sale entry?')) return;
+  state.sales.splice(i,1);
+  storageSave('sss_v1_sales', state.sales);
+  renderAll();
+}
+function deletePurchase(i){
+  if(!confirm('Delete this purchase entry?')) return;
+  state.purchases.splice(i,1);
+  storageSave('sss_v1_purchases', state.purchases);
+  renderAll();
+}
+
 function printLedger(){
   const fy=document.getElementById('financialYear').value;
   const el=document.getElementById('ledgerBody');
@@ -1177,14 +1202,14 @@ function savePayment(){
 // ── RENDER ──
 function renderNotes(){
   const el=document.getElementById('notesList');
-  el.innerHTML=state.notes.length?state.notes.map(n=>`<div class="list-item"><div><strong>${escapeHtml(n.type)}</strong><div class="tiny muted">${escapeHtml(n.party)} · ${escapeHtml(n.ref)}</div><div class="small">${escapeHtml(n.reason)}</div></div><div>${inr(n.amount)}</div></div>`).join(''):'<div class="muted small">No notes saved.</div>';
+  el.innerHTML=state.notes.length?state.notes.map((n,i)=>`<div class="list-item"><div><strong>${escapeHtml(n.type)}</strong><div class="tiny muted">${escapeHtml(n.party)} · ${escapeHtml(n.ref)}</div><div class="small">${escapeHtml(n.reason)}</div></div><div style="display:flex;align-items:center;gap:8px">${inr(n.amount)}<button onclick="deleteNote(${i})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></div></div>`).join(''):'<div class="muted small">No notes saved.</div>';
 }
 
 function renderPayments(){
   const fy=document.getElementById('financialYear').value;
   const rows=state.payments.filter(p=>p.fy===fy);
   const el=document.getElementById('paymentList');
-  el.innerHTML=rows.length?rows.map(p=>`<div class="list-item"><div><strong>${escapeHtml(p.party)}</strong><div class="tiny muted">${escapeHtml(p.mode)} · ${escapeHtml(p.date)}</div><div class="small">${escapeHtml(p.remarks||'No remarks')}</div></div><div>${inr(p.amount)}</div></div>`).join(''):'<div class="muted small">No payments saved.</div>';
+  el.innerHTML=rows.length?rows.map((p,i)=>`<div class="list-item"><div><strong>${escapeHtml(p.party)}</strong><div class="tiny muted">${escapeHtml(p.mode)} · ${escapeHtml(p.date)}</div><div class="small">${escapeHtml(p.remarks||'No remarks')}</div></div><div style="display:flex;align-items:center;gap:8px">${inr(p.amount)}<button onclick="deletePayment(${state.payments.indexOf(p)})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></div></div>`).join(''):'<div class="muted small">No payments saved.</div>';
 }
 
 function renderRegisters(){
@@ -1196,8 +1221,8 @@ function renderRegisters(){
   const purchFY=state.purchases.filter(p=>p.fy===fy&&inRange(p.date));
   const sr=document.getElementById('saleRegister');
   const pr=document.getElementById('purchaseRegister');
-  sr.innerHTML=salesFY.map(s=>`<tr><td>${escapeHtml(s.date?new Date(s.date).toLocaleDateString('en-IN'):'')}</td><td>${escapeHtml(s.party)}</td><td>${escapeHtml(s.ref)}</td><td style="text-align:right">${inr(s.taxable||0)}</td><td style="text-align:right">${inr(s.tax||0)}</td><td style="text-align:right;font-weight:700;color:var(--color-primary)">${inr(s.grand)}</td></tr>`).join()||'<tr><td colspan="6" class="muted">No sale vouchers.</td></tr>';
-  pr.innerHTML=purchFY.map(p=>`<tr><td>${escapeHtml(p.date?new Date(p.date).toLocaleDateString('en-IN'):'')}</td><td>${escapeHtml(p.party)}</td><td>${escapeHtml(p.ref)}</td><td style="text-align:right">${inr(p.taxable||0)}</td><td style="text-align:right">${inr(p.tax||0)}</td><td style="text-align:right;font-weight:700;color:var(--color-primary)">${inr(p.grand)}</td></tr>`).join()||'<tr><td colspan="6" class="muted">No purchase vouchers.</td></tr>';
+  sr.innerHTML=salesFY.map((s,i)=>`<tr><td>${escapeHtml(s.date?new Date(s.date).toLocaleDateString('en-IN'):'')}</td><td>${escapeHtml(s.party)}</td><td>${escapeHtml(s.ref)}</td><td style="text-align:right">${inr(s.taxable||0)}</td><td style="text-align:right">${inr(s.tax||0)}</td><td style="text-align:right;font-weight:700;color:var(--color-primary)">${inr(s.grand)}</td><td class="no-print"><button onclick="deleteSale(${state.sales.indexOf(s)})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></td></tr>`).join()||'<tr><td colspan="7" class="muted">No sale vouchers.</td></tr>';
+  pr.innerHTML=purchFY.map((p,i)=>`<tr><td>${escapeHtml(p.date?new Date(p.date).toLocaleDateString('en-IN'):'')}</td><td>${escapeHtml(p.party)}</td><td>${escapeHtml(p.ref)}</td><td style="text-align:right">${inr(p.taxable||0)}</td><td style="text-align:right">${inr(p.tax||0)}</td><td style="text-align:right;font-weight:700;color:var(--color-primary)">${inr(p.grand)}</td><td class="no-print"><button onclick="deletePurchase(${state.purchases.indexOf(p)})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></td></tr>`).join()||'<tr><td colspan="7" class="muted">No purchase vouchers.</td></tr>';
   const sc=document.getElementById('saleRegCount'); if(sc) sc.textContent=salesFY.length?`(${salesFY.length} entries)`:'';
   const pc=document.getElementById('purchaseRegCount'); if(pc) pc.textContent=purchFY.length?`(${purchFY.length} entries)`:'';
   const st=document.getElementById('saleRegTotal');
