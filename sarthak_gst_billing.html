@@ -857,7 +857,6 @@ let histRecords = (function(){
 
 // ── SAVE PURCHASE TO HISTORY ──
 function savePurchaseToHistory(){
-  saveVoucher('purchase');
   const billno=document.getElementById('purchaseBillNo').value.trim();
   if(!billno){alert('Please enter a Bill Number before saving.'); return;}
   const calc=updateVoucher('purchase');
@@ -1237,7 +1236,6 @@ function saveVoucher(type){
 
 // ── SAVE SALE TO HISTORY ──
 function saveSaleToHistory(){
-  saveVoucher('sale');
   const invno=document.getElementById('saleInvoiceNo').value.trim();
   if(!invno){alert('Please enter an Invoice Number before saving.'); return;}
   const calc=updateVoucher('sale');
