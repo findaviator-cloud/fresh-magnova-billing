@@ -857,7 +857,6 @@ let histRecords = (function(){
 
 // ── SAVE PURCHASE TO HISTORY ──
 function savePurchaseToHistory(){
-  saveVoucher('purchase');
   const billno=document.getElementById('purchaseBillNo').value.trim();
   if(!billno){alert('Please enter a Bill Number before saving.'); return;}
   const calc=updateVoucher('purchase');
@@ -1237,7 +1236,6 @@ function saveVoucher(type){
 
 // ── SAVE SALE TO HISTORY ──
 function saveSaleToHistory(){
-  saveVoucher('sale');
   const invno=document.getElementById('saleInvoiceNo').value.trim();
   if(!invno){alert('Please enter an Invoice Number before saving.'); return;}
   const calc=updateVoucher('sale');
@@ -1605,6 +1603,20 @@ function updateHistRecord(){
 
 // ── PRINT HISTORY RECORD ──
 function printHistRecord(id){
+  const r=histRecords.find(x=>x.id===id); if(!r) return;
+  // Purchase type check
+  if(r.type==='purchase'){
+    const itemRowsP=(r.items||[]).map((it,i)=>`<tr><td style="text-align:center">${i+1}</td><td>${escapeHtml(it.desc||'')}</td><td style="text-align:center">${escapeHtml(it.hsn||'')}</td><td style="text-align:center">${it.qty}</td><td style="text-align:right">₹${Number(it.rate).toFixed(2)}</td><td style="text-align:right">₹${(Number(it.qty)*Number(it.rate)).toFixed(2)}</td></tr>`).join('');
+    const wp=window.open('','_blank');
+    wp.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Purchase Bill ${escapeHtml(r.invno||'')}</title><style>@page{size:A4;margin:8mm}body{font-family:Arial,sans-serif;font-size:8pt}table{width:100%;border-collapse:collapse}th,td{border:0.5pt solid #999;padding:3pt 5pt}th{background:#e8f8f5;font-weight:700;font-size:7pt}h2{color:#0e5c63}.footer{margin-top:10pt;font-size:7pt;color:#888;text-align:center}</style></head><body>
+    <h2>Purchase Bill — ${escapeHtml(r.invno||'')}</h2>
+    <p style="font-size:8pt"><strong>Supplier:</strong> ${escapeHtml(r.buyername||'')} &nbsp;|&nbsp; <strong>Date:</strong> ${r.date?new Date(r.date).toLocaleDateString('en-IN'):''}</p>
+    <table style="margin-top:8pt"><thead><tr><th>#</th><th>Description</th><th>HSN</th><th>Qty</th><th>Rate</th><th>Amount</th></tr></thead><tbody>${itemRowsP}</tbody></table>
+    <div style="margin-top:8pt;text-align:right;font-size:9pt"><strong>Taxable: ₹${Number(r.taxable||0).toFixed(2)} | CGST: ₹${Number(r.cgst||0).toFixed(2)} | SGST: ₹${Number(r.sgst||0).toFixed(2)} | Grand Total: ₹${Number(r.grand||0).toFixed(2)}</strong></div>
+    <div class="footer">SARTHAK SOLUTION SALES · Purchase Record · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
+    </body></html>`);
+    wp.document.close(); wp.print(); return;
+  }
   const r=histRecords.find(x=>x.id===id); if(!r) return;
   const itemRows=(r.items||[]).map((it,i)=>`<tr><td style="text-align:center">${i+1}</td><td></td><td>${escapeHtml(it.desc||'')}</td><td style="text-align:center">${escapeHtml(it.hsn||'')}</td><td style="text-align:center">${it.qty}</td><td style="text-align:right">₹${Number(it.rate).toFixed(2)}</td><td style="text-align:center">PCS</td><td style="text-align:right">₹${(Number(it.qty)*Number(it.rate)).toFixed(2)}</td></tr>`).join('');
   const taxable=r.taxable||0,cgst=r.cgst||0,sgst=r.sgst||0,grand=r.grand||0;
