@@ -444,11 +444,11 @@
         </div>
 
         <div class="toolbar no-print">
-          <button class="btn primary" onclick="saveVoucher('sale')">💾 Save Sale</button>
+
           <button class="btn" onclick="addItemRow('saleItems')">＋ Add Item</button>
           <button class="btn" onclick="clearSaleForm()">🗑️ Clear</button>
           <button class="btn success" onclick="printSaleDoc()">🖨️ Print Invoice</button>
-          <button class="btn" onclick="saveSaleToHistory()">📂 Save to History</button>
+          <button class="btn primary" onclick="saveSaleToHistory()">💾 Save to History</button>
           <button class="btn" onclick="downloadInvoicePDF()">⬇️ PDF Download</button>
           <button class="btn" id="updateInvBtn" style="display:none;background:linear-gradient(135deg,#7a4e00,#a06800);color:#fff;border-color:#7a4e00" onclick="updateHistRecord()">🔄 Update Invoice</button>
           <span id="editModeBadge" style="display:none;background:rgba(154,90,0,.15);color:var(--color-warning);border:1px solid var(--color-warning);padding:.4rem .9rem;border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:700">✏️ EDIT MODE</span>
@@ -614,8 +614,8 @@
       <section id="purchase" class="page">
         <div class="page-head"><div><div class="page-title">Purchase Entry</div><p class="muted">Record supplier bills and update stock automatically.</p></div></div>
         <div class="toolbar no-print">
-          <button class="btn primary" onclick="saveVoucher('purchase')">💾 Save Purchase</button>
-          <button class="btn" onclick="savePurchaseToHistory()">📂 Save to History</button>
+
+          <button class="btn primary" onclick="savePurchaseToHistory()">💾 Save to History</button>
           <button class="btn" onclick="addItemRow('purchaseItems')">＋ Add Item</button>
         </div>
         <!-- Compact purchase document -->
@@ -857,6 +857,7 @@ let histRecords = (function(){
 
 // ── SAVE PURCHASE TO HISTORY ──
 function savePurchaseToHistory(){
+  saveVoucher('purchase');
   const billno=document.getElementById('purchaseBillNo').value.trim();
   if(!billno){alert('Please enter a Bill Number before saving.'); return;}
   const calc=updateVoucher('purchase');
@@ -1236,6 +1237,7 @@ function saveVoucher(type){
 
 // ── SAVE SALE TO HISTORY ──
 function saveSaleToHistory(){
+  saveVoucher('sale');
   const invno=document.getElementById('saleInvoiceNo').value.trim();
   if(!invno){alert('Please enter an Invoice Number before saving.'); return;}
   const calc=updateVoucher('sale');
