@@ -1604,7 +1604,7 @@ function updateHistRecord(){
 // ── PRINT HISTORY RECORD ──
 function printHistRecord(id){
   const r=histRecords.find(x=>x.id===id); if(!r) return;
-  const itemRows=(r.items||[]).map((it,i)=>`<tr><td style="text-align:center">${i+1}</td><td></td><td>${escapeHtml(it.desc||'')}</td><td style="text-align:center">${escapeHtml(it.hsn||'')}</td><td style="text-align:center">${it.qty}</td><td style="text-align:right">₹${Number(it.rate).toFixed(2)}</td><td style="text-align:center">PCS</td><td style="text-align:right">₹${(Number(it.qty)*Number(it.rate)).toFixed(2)}</td></tr>`).join('');
+  const itemRows=(r.items||[]).map((it,i)=>`<tr><td style="text-align:center">${i+1}</td><td style="text-align:center">${escapeHtml(it.pkg||'')}</td><td>${escapeHtml(it.desc||'')}</td><td style="text-align:center">${escapeHtml(it.hsn||'')}</td><td style="text-align:center">${it.qty}</td><td style="text-align:right">₹${Number(it.rate).toFixed(2)}</td><td style="text-align:center">${escapeHtml(it.unit||'PCS')}</td><td style="text-align:right">₹${it.amount?Number(it.amount).toFixed(2):(Number(it.qty)*Number(it.rate)).toFixed(2)}</td></tr>`).join('');
   const taxable=r.taxable||0,cgst=r.cgst||0,sgst=r.sgst||0,grand=r.grand||0;
   const win=window.open('','_blank','width=900,height=720');
   win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Invoice ${escapeHtml(r.invno||'')}</title>
