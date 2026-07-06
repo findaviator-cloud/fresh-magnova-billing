@@ -1667,7 +1667,7 @@ function printHistRecord(id){
   <div class="buyer-sec">
     <div class="bst">Buyer (Bill to)</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;padding:0">
-      <div style="border-right:0.5pt solid #888;padding:3pt 5pt"><div style="font-weight:900;font-size:8pt">${escapeHtml(r.buyername||'')}</div><div style="font-size:7pt;color:#333">${escapeHtml(r.buyeraddress||'')}</div><div style="font-size:7pt"><strong>GSTIN:</strong> ${escapeHtml(r.buyergstin||'—')} | <strong>State:</strong> ${escapeHtml(r.buyerstate||'UTTAR PRADESH')}</div></div>
+      <div style="border-right:0.5pt solid #888;padding:3pt 5pt"><div style="font-weight:900;font-size:8pt">${escapeHtml(r.buyername||'')}</div><div style="font-size:7pt;color:#333">${escapeHtml(r.buyeraddress||'')}</div><div style="font-size:7pt"><strong>GSTIN:</strong> ${escapeHtml(r.buyergstin||'—')} | <strong>State:</strong> ${escapeHtml(r.buyerstate||'UTTAR PRADESH')}</div><div style="font-size:7pt"><strong>State Code:</strong> ${escapeHtml(r.buyerstateCode||'')} | <strong>Mob:</strong> ${escapeHtml(r.buyercontact||'')} </div></div>
       <div style="padding:3pt 5pt"><div style="font-size:7pt"><strong>Place of Supply:</strong> ${escapeHtml(r.place||'')}</div><div style="font-size:7pt"><strong>E-Way Bill No.:</strong> ${escapeHtml(r.ewaybill||'—')}</div></div>
     </div>
   </div>
