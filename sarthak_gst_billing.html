@@ -1687,7 +1687,8 @@ function printHistRecord(id){
       <div class="trow"><span>Taxable Amount</span><span>₹${Number(taxable).toFixed(2)}</span></div>
       <div class="trow"><span>CGST (9%)</span><span>₹${Number(cgst).toFixed(2)}</span></div>
       <div class="trow"><span>SGST (9%)</span><span>₹${Number(sgst).toFixed(2)}</span></div>
-      <div class="trow"><span>IGST</span><span>—</span></div>
+      <div class="trow" id="igstRowH"><span>IGST</span><span>—</span></div>
+      <div class="trow"><span>Round Off</span><span>${r.roundOff!==undefined?(r.roundOff>=0?"+":"")+Number(r.roundOff).toFixed(2):"—"}</span></div>
       <div class="trow gt"><span>Grand Total</span><span>₹${Number(grand).toFixed(2)}</span></div>
       <div class="twords">In words: ${n2w(Math.round(grand))} Rupees Only</div>
     </div>
