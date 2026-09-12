@@ -5,13 +5,13 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1400,
     height: 900,
-    title: 'Sarthak GST Billing',
+    title: 'Fresh Magnova GST Billing',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true
     }
   })
-  win.loadFile('sarthak_gst_billing.html')
+  win.loadFile('fresh_magnova_gst_billing.html')
   win.setMenuBarVisibility(false)
 }
 

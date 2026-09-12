@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sarthak Solution Sales — GST Billing System</title>
+  <title>Fresh Magnova Solution Sales — GST Billing System</title>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <style>
     /* ── TOKENS ── */
@@ -318,6 +318,9 @@
     }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Fresh Magnova configuration: update company/GST/bank details in fresh-magnova.config.json -->
+  <meta name="application-name" content="Fresh Magnova GST Billing">
 </head>
 <body>
 <div id="toast"></div>
@@ -335,7 +338,7 @@
             <path id="arc-bot" d="M18,58 A35,35 0 0,0 82,58" fill="none"/>
           </defs>
           <text font-size="8.5" fill="#0e5c63" font-weight="800" letter-spacing=".5">
-            <textPath href="#arc-top" startOffset="50%" text-anchor="middle">SARTHAK SOLUTION</textPath>
+            <textPath href="#arc-top" startOffset="50%" text-anchor="middle">FRESH MAGNOVA SOLUTION</textPath>
           </text>
           <text font-size="7" fill="#0e5c63" font-weight="700">
             <textPath href="#arc-bot" startOffset="50%" text-anchor="middle">VARANASI · GST</textPath>
@@ -381,7 +384,7 @@
     <header class="topbar no-print">
       <div>
         <div class="tiny muted">GST billing · Stock · Ledger · Reports · History</div>
-        <div class="small"><strong>Sarthak Solution Sales</strong> — Professional document system</div>
+        <div class="small"><strong>Fresh Magnova Solution Sales</strong> — Professional document system</div>
       </div>
       <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
         <button class="btn ghost" id="themeToggle">🌓 Theme</button>
@@ -463,7 +466,7 @@
 
           <!-- Company name band -->
           <div class="inv-company-band">
-            <div class="icb-left">SARTHAK SOLUTION SALES</div>
+            <div class="icb-left">FRESH MAGNOVA SOLUTION SALES</div>
             <div class="icb-right">
               SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 (U.P.)<br>
               Mob: 7007191150 &nbsp;|&nbsp; GSTIN: 09ARQPJ8298N1ZI &nbsp;|&nbsp; State Code: 09
@@ -485,7 +488,7 @@
             <!-- Left: Seller info -->
             <div class="inv-seller-block">
               <span class="cell-label" style="font-size:.6rem;margin-bottom:2px">Seller (Bill From)</span>
-              <div style="font-weight:900;font-size:.8rem;color:#0e5c63">SARTHAK SOLUTION SALES</div>
+              <div style="font-weight:900;font-size:.8rem;color:#0e5c63">FRESH MAGNOVA SOLUTION SALES</div>
               <div style="font-size:.7rem;color:#333;line-height:1.5">
                 SA 2/435, Pandeypur, Azamgarh Road,<br>Rai Sahab Bagicha, Varanasi, Uttar Pradesh - 221002
               </div>
@@ -571,22 +574,22 @@
           <!-- ROW 7: Totals right + Bank/IGST note left -->
           <!-- ROW 7+8: Footer -->
           <div style="border:1.5px solid #444;border-top:none">
-            <!-- Top: Bank + Totals + Sarthak -->
+            <!-- Top: Bank + Totals + Fresh Magnova -->
             <div style="display:grid;grid-template-columns:1fr 200px 280px;border-bottom:1px solid #888">
               <!-- Bank Details -->
               <div style="padding:6px;border-right:1px solid #888">
                 <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#0e5c63;margin-bottom:3px;border-bottom:1px dashed #ccc;padding-bottom:2px">Bank Details / Firm Details</div>
                 <div style="font-size:.7rem;line-height:1.7">
-                  <strong>A/c Name:</strong> <input class="cinput" id="bankAccName" value="SARTHAK SOLUTION SALES" style="width:160px"><br>
+                  <strong>A/c Name:</strong> <input class="cinput" id="bankAccName" value="FRESH MAGNOVA SOLUTION SALES" style="width:160px"><br>
                   <strong>Bank:</strong> <input class="cinput" id="bankName" value="STATE BANK OF INDIA" style="width:150px"> &nbsp;|&nbsp;
                   <strong>IFSC:</strong> <input class="cinput" id="bankIfsc" value="SBIN0012223" style="width:90px"><br>
                   <strong>A/c No.:</strong> <input class="cinput" id="bankAccNo" value="37519112216" style="width:110px"> &nbsp;|&nbsp;
                   <strong>Branch:</strong> <input class="cinput" id="bankBranch" value="PANDEYPUR-221002, VARANASI" style="width:160px">
                 </div>
               </div>
-              <!-- Sarthak + Authorised -->
+              <!-- Fresh Magnova + Authorised -->
               <div style="padding:6px 8px;text-align:right;display:flex;flex-direction:column;justify-content:space-between;min-height:80px;border-right:1px solid #888">
-                <div style="font-weight:900;font-size:.72rem;color:#0e5c63;white-space:normal;word-break:break-word">M/s SARTHAK SOLUTION SALES</div>
+                <div style="font-weight:900;font-size:.72rem;color:#0e5c63;white-space:normal;word-break:break-word">M/s FRESH MAGNOVA SOLUTION SALES</div>
                 <div style="font-size:.65rem;font-weight:700;color:#666;margin-top:60px">Authorised Signatory</div>
               </div>
               <!-- Totals -->
@@ -620,7 +623,7 @@
         </div>
         <!-- Compact purchase document -->
         <div class="document">
-          <div class="inv-company-band"><div class="icb-left">PURCHASE VOUCHER</div><div class="icb-right">Sarthak Solution Sales</div></div>
+          <div class="inv-company-band"><div class="icb-left">PURCHASE VOUCHER</div><div class="icb-right">Fresh Magnova Solution Sales</div></div>
           <table class="inv-border-table" style="border-bottom:none">
             <tr>
               <td style="width:25%"><span class="cell-label">Supplier Name</span><input class="cinput" id="purchaseParty" value="Sample Supplier" style="width:100%"></td>
@@ -901,7 +904,7 @@ function downloadInvoicePDF(){
   doc.rect(0,0,210,22,'F');
   doc.setTextColor(255,255,255);
   doc.setFontSize(14);doc.setFont('helvetica','bold');
-  doc.text('SARTHAK SOLUTION SALES',14,10);
+  doc.text('FRESH MAGNOVA SOLUTION SALES',14,10);
   doc.setFontSize(7);doc.setFont('helvetica','normal');
   doc.text('SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 | GSTIN: 09ARQPJ8298N1ZI | Mob: 7007191150',14,16);
   doc.setFontSize(11);doc.setFont('helvetica','bold');
@@ -959,7 +962,7 @@ function downloadInvoicePDF(){
 
   // Footer
   doc.setFont('helvetica','normal');doc.setFontSize(8);
-  doc.text('For SARTHAK SOLUTION SALES',140,275);
+  doc.text('For FRESH MAGNOVA SOLUTION SALES',140,275);
   doc.text('Authorised Signatory',148,285);
 
   doc.save(`Invoice-${invno}.pdf`);
@@ -998,7 +1001,7 @@ function printLedger(){
   w.document.write(`<!DOCTYPE html><html><head><title>Ledger — ${fy}</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px;text-align:left}th{background:#e8f8f5;font-weight:700}td:last-child,td:nth-child(3),td:nth-child(4),td:nth-child(5){text-align:right}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}</style></head><body>
   <h2>Ledger Display — FY: ${fy}</h2>
   <table><thead><tr><th>Party</th><th>Sales</th><th>Purchases</th><th>Receipts</th><th>Payments</th><th>Balance</th></tr></thead><tbody>${el?el.innerHTML:''}</tbody></table>
-  <div class="footer">SARTHAK SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
+  <div class="footer">FRESH MAGNOVA SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
   </body></html>`);
   w.document.close(); w.print();
 }
@@ -1010,7 +1013,7 @@ function printGSTReports(){
   w.document.write(`<!DOCTYPE html><html><head><title>GST Report — ${fy}</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px;text-align:left}th{background:#e8f8f5;font-weight:700}td:not(:first-child){text-align:right}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}</style></head><body>
   <h2>GST Report — FY: ${fy}</h2>
   <table><thead><tr><th>Month</th><th>Taxable</th><th>CGST</th><th>SGST</th><th>IGST</th><th>Total Tax</th></tr></thead><tbody>${el?el.innerHTML:''}</tbody></table>
-  <div class="footer">SARTHAK SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
+  <div class="footer">FRESH MAGNOVA SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
   </body></html>`);
   w.document.close(); w.print();
 }
@@ -1025,7 +1028,7 @@ function printCashFlow(){
   <h2>Cash Flow Statement</h2>
   <div class="summary"><span class="income">Total Income: ${inc}</span><span class="expense">Total Expense: ${exp}</span><span>Net Balance: ${net}</span></div>
   <table><thead><tr><th>Date</th><th>Type</th><th>Description</th><th>Amount</th></tr></thead><tbody>${tb?tb.innerHTML:''}</tbody></table>
-  <div class="footer">SARTHAK SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
+  <div class="footer">FRESH MAGNOVA SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
   </body></html>`);
   w.document.close(); w.print();
 }
@@ -1036,7 +1039,7 @@ function printPurchaseOrders(){
   w.document.write(`<!DOCTYPE html><html><head><title>Purchase Orders</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px}th{background:#e8f8f5;font-weight:700}td:nth-child(5),td:nth-child(6),td:nth-child(7){text-align:right}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}.no-print{display:none}</style></head><body>
   <h2>Purchase Orders</h2>
   <table><thead><tr><th>#</th><th>Date</th><th>Vendor</th><th>Item</th><th>Qty</th><th>Rate</th><th>Amount</th><th>Status</th></tr></thead><tbody>${tb?tb.innerHTML:''}</tbody></table>
-  <div class="footer">SARTHAK SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
+  <div class="footer">FRESH MAGNOVA SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
   </body></html>`);
   w.document.close(); w.print();
 }
@@ -1048,7 +1051,7 @@ function printLedger(){
   w.document.write(`<!DOCTYPE html><html><head><title>Ledger — ${fy}</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px;text-align:left}th{background:#e8f8f5;font-weight:700}td:last-child,td:nth-child(3),td:nth-child(4),td:nth-child(5){text-align:right}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}</style></head><body>
   <h2>Ledger Display — FY: ${fy}</h2>
   <table><thead><tr><th>Party</th><th>Sales</th><th>Purchases</th><th>Receipts</th><th>Payments</th><th>Balance</th></tr></thead><tbody>${el?el.innerHTML:''}</tbody></table>
-  <div class="footer">SARTHAK SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
+  <div class="footer">FRESH MAGNOVA SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
   </body></html>`);
   w.document.close(); w.print();
 }
@@ -1060,7 +1063,7 @@ function printGSTReports(){
   w.document.write(`<!DOCTYPE html><html><head><title>GST Report — ${fy}</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px;text-align:left}th{background:#e8f8f5;font-weight:700}td:not(:first-child){text-align:right}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}</style></head><body>
   <h2>GST Report — FY: ${fy}</h2>
   <table><thead><tr><th>Month</th><th>Taxable</th><th>CGST</th><th>SGST</th><th>IGST</th><th>Total Tax</th></tr></thead><tbody>${el?el.innerHTML:''}</tbody></table>
-  <div class="footer">SARTHAK SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
+  <div class="footer">FRESH MAGNOVA SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
   </body></html>`);
   w.document.close(); w.print();
 }
@@ -1075,7 +1078,7 @@ function printCashFlow(){
   <h2>Cash Flow Statement</h2>
   <div class="summary"><span class="income">Total Income: ${inc}</span><span class="expense">Total Expense: ${exp}</span><span>Net Balance: ${net}</span></div>
   <table><thead><tr><th>Date</th><th>Type</th><th>Description</th><th>Amount</th></tr></thead><tbody>${tb?tb.innerHTML:''}</tbody></table>
-  <div class="footer">SARTHAK SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
+  <div class="footer">FRESH MAGNOVA SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
   </body></html>`);
   w.document.close(); w.print();
 }
@@ -1086,7 +1089,7 @@ function printPurchaseOrders(){
   w.document.write(`<!DOCTYPE html><html><head><title>Purchase Orders</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px}th{background:#e8f8f5;font-weight:700}td:nth-child(5),td:nth-child(6),td:nth-child(7){text-align:right}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}.no-print{display:none}</style></head><body>
   <h2>Purchase Orders</h2>
   <table><thead><tr><th>#</th><th>Date</th><th>Vendor</th><th>Item</th><th>Qty</th><th>Rate</th><th>Amount</th><th>Status</th></tr></thead><tbody>${tb?tb.innerHTML:''}</tbody></table>
-  <div class="footer">SARTHAK SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
+  <div class="footer">FRESH MAGNOVA SOLUTION SALES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
   </body></html>`);
   w.document.close(); w.print();
 }
@@ -1369,13 +1372,13 @@ function printRegister(type){
   const win=window.open('','_blank','width=900,height=700');
   win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${title}</title>
   <style>@page{size:A4;margin:10mm 12mm}*{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}body{font-family:Arial,sans-serif;font-size:9pt;color:#111;padding:8mm}.hb{background:linear-gradient(90deg,#0e5c63,#1a7a84);color:#fff;padding:8pt 12pt;border-radius:4pt;margin-bottom:6pt;display:flex;justify-content:space-between}.hb .hl{font-weight:900;font-size:13pt}.hb .hr{font-size:7pt;opacity:.95}.tc{text-align:center;padding:5pt 0;border-bottom:1.5pt solid #ddd;margin-bottom:8pt}.tc h2{font-size:13pt;text-transform:uppercase;letter-spacing:.06em;color:#0e5c63;font-weight:900}.tc p{font-size:7pt;color:#666;margin-top:2pt}table{width:100%;border-collapse:collapse;margin-bottom:8pt}th{background:linear-gradient(90deg,#0e5c63,#1a7a84);color:#fff;padding:4pt 5pt;font-size:7pt;text-transform:uppercase;font-weight:700;letter-spacing:.05em}td{border-bottom:0.5pt solid #ddd;padding:3.5pt 5pt}tr:nth-child(even) td{background:#f8fcfc}.summary{display:flex;gap:10pt;margin-top:8pt}.sum-box{flex:1;background:#f8fcfc;border:0.5pt solid #ddd;border-radius:3pt;padding:6pt 8pt}.sum-label{font-size:7pt;color:#888;text-transform:uppercase;font-weight:700;letter-spacing:.06em;margin-bottom:2pt}.sum-val{font-size:13pt;font-weight:900;color:#0e5c63}.footer{margin-top:10pt;padding-top:5pt;border-top:0.5pt solid #ddd;font-size:7pt;color:#888;text-align:center}</style>
-  </head><body><div class="hb"><div class="hl">SARTHAK SOLUTION SALES</div><div class="hr">${title} · FY: ${fy} · Printed: ${new Date().toLocaleDateString('en-IN')}</div></div>
+  </head><body><div class="hb"><div class="hl">FRESH MAGNOVA SOLUTION SALES</div><div class="hr">${title} · FY: ${fy} · Printed: ${new Date().toLocaleDateString('en-IN')}</div></div>
   <div class="tc"><h2>${title}</h2><p>SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 · GSTIN: 09ARQPJ8298N1ZI · Period: ${dateRange}</p></div>
   <table><thead><tr><th style="width:5%;text-align:center">S.No.</th><th style="width:11%">Date</th><th style="width:28%">Party Name</th><th style="width:12%">${isSale?'Invoice No.':'Bill No.'}</th><th style="width:13%;text-align:right">Taxable (₹)</th><th style="width:13%;text-align:right">GST (₹)</th><th style="width:14%;text-align:right">Total (₹)</th></tr></thead>
   <tbody>${rows}</tbody>
   <tfoot><tr style="background:#e8f8f5;font-weight:900"><td colspan="4" style="text-align:right;font-size:8.5pt">TOTAL (${data.length} entries)</td><td style="text-align:right">₹${totTaxable.toFixed(2)}</td><td style="text-align:right">₹${totGst.toFixed(2)}</td><td style="text-align:right;color:#0e5c63;font-size:9.5pt">₹${totGrand.toFixed(2)}</td></tr></tfoot></table>
   <div class="summary"><div class="sum-box"><div class="sum-label">Total Taxable</div><div class="sum-val">₹${totTaxable.toFixed(2)}</div></div><div class="sum-box"><div class="sum-label">Total GST</div><div class="sum-val">₹${totGst.toFixed(2)}</div></div><div class="sum-box"><div class="sum-label">Grand Total</div><div class="sum-val">₹${totGrand.toFixed(2)}</div></div><div class="sum-box"><div class="sum-label">Entries</div><div class="sum-val">${data.length}</div></div></div>
-  <div class="footer">COMPUTER-GENERATED REGISTER — SARTHAK SOLUTION SALES, Varanasi · All figures in Indian Rupees (₹)</div></body></html>`);
+  <div class="footer">COMPUTER-GENERATED REGISTER — FRESH MAGNOVA SOLUTION SALES, Varanasi · All figures in Indian Rupees (₹)</div></body></html>`);
   win.document.close(); win.focus(); setTimeout(()=>win.print(),400);
 }
 
@@ -1577,7 +1580,7 @@ document.getElementById('themeToggle').addEventListener('click',()=>{
 document.getElementById('financialYear').addEventListener('change',renderAll);
 document.getElementById('exportData').addEventListener('click',()=>{
   const blob=new Blob([JSON.stringify({state,histRecords},null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='sarthak-gst-data.json';a.click();showToast('✅ Full data exported.');
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='fresh-magnova-gst-data.json';a.click();showToast('✅ Full data exported.');
 });
 
 // ── EDIT MODE ──
@@ -1654,10 +1657,10 @@ function printHistRecord(id){
       
     <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#c00" stroke-width="11" stroke-linecap="square"><line x1="50" y1="10" x2="50" y2="90"/><line x1="10" y1="50" x2="90" y2="50"/><polyline points="50,10 75,10 75,35"/><polyline points="90,50 90,75 65,75"/><polyline points="50,90 25,90 25,65"/><polyline points="10,50 10,25 35,25"/></g></svg>
   </div>
-  <div class="cb"><div class="cl">SARTHAK SOLUTION SALES</div><div class="cr">SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 (U.P.)<br>Mob: 7007191150 | GSTIN: 09ARQPJ8298N1ZI | State Code: 09</div></div>
+  <div class="cb"><div class="cl">FRESH MAGNOVA SOLUTION SALES</div><div class="cr">SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 (U.P.)<br>Mob: 7007191150 | GSTIN: 09ARQPJ8298N1ZI | State Code: 09</div></div>
   <table class="bt" style="border-bottom:none"><tr class="title-row"><td style="padding:4pt">Tax Invoice</td></tr></table>
   <div class="hdr-split">
-    <div class="seller-blk"><span class="lbl">Seller (Bill From)</span><div style="font-weight:900;font-size:8pt;color:#0e5c63">SARTHAK SOLUTION SALES</div><div style="font-size:7pt;color:#333;line-height:1.5">SA 2/435, Pandeypur, Azamgarh Road, Varanasi - 221002</div><div style="font-size:7pt"><strong>GSTIN:</strong> 09ARQPJ8298N1ZI | <strong>State Code:</strong> 09</div></div>
+    <div class="seller-blk"><span class="lbl">Seller (Bill From)</span><div style="font-weight:900;font-size:8pt;color:#0e5c63">FRESH MAGNOVA SOLUTION SALES</div><div style="font-size:7pt;color:#333;line-height:1.5">SA 2/435, Pandeypur, Azamgarh Road, Varanasi - 221002</div><div style="font-size:7pt"><strong>GSTIN:</strong> 09ARQPJ8298N1ZI | <strong>State Code:</strong> 09</div></div>
     <div class="meta-grid" style="border-left:0.5pt solid #888">
       <div class="mc" style="background:#fff0f0"><span class="lbl">Invoice No.</span><span class="val" style="color:#cc0000;font-weight:900;font-size:1.1rem">${escapeHtml(r.invno||'')}</span></div>
       <div class="mc"><span class="lbl">Date</span><span class="val" style="font-weight:800;font-size:.92rem">${r.date?new Date(r.date).toLocaleDateString('en-IN'):''}</span></div>
@@ -1681,7 +1684,7 @@ function printHistRecord(id){
   <div class="foot-split">
     <div class="fl">
       <div style="font-size:6.5pt;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#0e5c63;margin-bottom:2pt;border-bottom:0.5pt dashed #ccc;padding-bottom:1pt">Bank Details / Firm Details</div>
-      <div style="font-size:7pt;line-height:1.7"><strong>A/c Name:</strong> ${escapeHtml(r.bankAccName||'SARTHAK SOLUTION SALES')}<br><strong>Bank:</strong> ${escapeHtml(r.bankName||'STATE BANK OF INDIA')} | <strong>IFSC:</strong> ${escapeHtml(r.bankIfsc||'SBIN0012223')}<br><strong>A/c No.:</strong> ${escapeHtml(r.bankAccNo||'37519112216')} | <strong>Branch:</strong> ${escapeHtml(r.bankBranch||'PANDEYPUR')}</div>
+      <div style="font-size:7pt;line-height:1.7"><strong>A/c Name:</strong> ${escapeHtml(r.bankAccName||'FRESH MAGNOVA SOLUTION SALES')}<br><strong>Bank:</strong> ${escapeHtml(r.bankName||'STATE BANK OF INDIA')} | <strong>IFSC:</strong> ${escapeHtml(r.bankIfsc||'SBIN0012223')}<br><strong>A/c No.:</strong> ${escapeHtml(r.bankAccNo||'37519112216')} | <strong>Branch:</strong> ${escapeHtml(r.bankBranch||'PANDEYPUR')}</div>
     </div>
     <div class="fr">
       <div class="trow"><span>Taxable Amount</span><span>₹${Number(taxable).toFixed(2)}</span></div>
@@ -1696,8 +1699,8 @@ function printHistRecord(id){
   <div class="bot-row">
     <div class="bd"><strong>Declaration:</strong> We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.<br><em>THIS IS A COMPUTER-GENERATED INVOICE.</em> All disputes subject to <strong>Varanasi Jurisdiction.</strong></div>
     <div class="sb">
-      <div class="co">M/s SARTHAK SOLUTION SALES</div>
-      <svg width="70" height="70" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg"><circle cx="210" cy="210" r="190" stroke="#0e5c63" stroke-width="8" fill="rgba(14,92,99,.04)"/><circle cx="210" cy="210" r="150" stroke="#0e5c63" stroke-width="3" fill="none"/><defs><path id="pst2" d="M75,110 A165,165 0 0,1 345,110" fill="none"/><path id="psb2" d="M75,310 A165,165 0 0,0 345,310" fill="none"/></defs><text font-size="20" fill="#0e5c63" font-weight="900"><textPath href="#pst2" startOffset="50%" text-anchor="middle">SARTHAK SOLUTION SALES</textPath></text><text font-size="14" fill="#0e5c63"><textPath href="#psb2" startOffset="50%" text-anchor="middle">Pandeypur, Varanasi - 221002</textPath></text><text x="210" y="215" text-anchor="middle" fill="#0e5c63" font-weight="900" font-size="28" dominant-baseline="middle">AUTHORIZED</text><text x="210" y="250" text-anchor="middle" fill="#0e5c63" font-size="13" dominant-baseline="middle">09ARQPJ8298N1ZI</text></svg>
+      <div class="co">M/s FRESH MAGNOVA SOLUTION SALES</div>
+      <svg width="70" height="70" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg"><circle cx="210" cy="210" r="190" stroke="#0e5c63" stroke-width="8" fill="rgba(14,92,99,.04)"/><circle cx="210" cy="210" r="150" stroke="#0e5c63" stroke-width="3" fill="none"/><defs><path id="pst2" d="M75,110 A165,165 0 0,1 345,110" fill="none"/><path id="psb2" d="M75,310 A165,165 0 0,0 345,310" fill="none"/></defs><text font-size="20" fill="#0e5c63" font-weight="900"><textPath href="#pst2" startOffset="50%" text-anchor="middle">FRESH MAGNOVA SOLUTION SALES</textPath></text><text font-size="14" fill="#0e5c63"><textPath href="#psb2" startOffset="50%" text-anchor="middle">Pandeypur, Varanasi - 221002</textPath></text><text x="210" y="215" text-anchor="middle" fill="#0e5c63" font-weight="900" font-size="28" dominant-baseline="middle">AUTHORIZED</text><text x="210" y="250" text-anchor="middle" fill="#0e5c63" font-size="13" dominant-baseline="middle">09ARQPJ8298N1ZI</text></svg>
       <div class="sl">Authorised Signatory</div>
     </div>
   </div>
@@ -1714,11 +1717,11 @@ function printAllPayments(){
   const tableRows=rows.map((p,i)=>{if(p.mode==='Receipt') totalR+=p.amount;else totalP+=p.amount;return `<tr><td style="text-align:center">${i+1}</td><td>${escapeHtml(p.date?new Date(p.date).toLocaleDateString('en-IN'):'')}</td><td>${escapeHtml(p.party||'')}</td><td style="text-align:center">${p.mode}</td><td style="text-align:right">₹${Number(p.amount).toFixed(2)}</td><td>${escapeHtml(p.remarks||'—')}</td></tr>`;}).join('');
   const win=window.open('','_blank','width=900,height=700');
   win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Payment Register</title><style>@page{size:A4;margin:10mm 12mm}*{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}body{font-family:Arial,sans-serif;font-size:9pt;color:#111;padding:8mm}.hb{background:linear-gradient(90deg,#0e5c63,#1a7a84);color:#fff;padding:8pt 12pt;border-radius:4pt;margin-bottom:6pt;display:flex;justify-content:space-between}.hb .hl{font-weight:900;font-size:13pt}.hb .hr{font-size:7pt;opacity:.95}.tc{text-align:center;padding:5pt 0;border-bottom:1.5pt solid #ddd;margin-bottom:8pt}.tc h2{font-size:13pt;text-transform:uppercase;color:#0e5c63;font-weight:900}.tc p{font-size:7pt;color:#666;margin-top:2pt}table{width:100%;border-collapse:collapse;margin-bottom:8pt}th{background:linear-gradient(90deg,#0e5c63,#1a7a84);color:#fff;padding:4pt 5pt;font-size:7pt;text-transform:uppercase;font-weight:700}td{border-bottom:0.5pt solid #ddd;padding:3.5pt 5pt}tr:nth-child(even) td{background:#f8fcfc}.summary{display:flex;gap:10pt;margin-top:8pt}.sum-box{flex:1;background:#f8fcfc;border:0.5pt solid #ddd;border-radius:3pt;padding:6pt 8pt}.sum-label{font-size:7pt;color:#888;text-transform:uppercase;font-weight:700;margin-bottom:2pt}.sum-val{font-size:13pt;font-weight:900;color:#0e5c63}.footer{margin-top:10pt;padding-top:5pt;border-top:0.5pt solid #ddd;font-size:7pt;color:#888;text-align:center}</style></head><body>
-  <div class="hb"><div class="hl">SARTHAK SOLUTION SALES</div><div class="hr">Payment Register · FY: ${escapeHtml(fy)} · Printed: ${new Date().toLocaleDateString('en-IN')}</div></div>
+  <div class="hb"><div class="hl">FRESH MAGNOVA SOLUTION SALES</div><div class="hr">Payment Register · FY: ${escapeHtml(fy)} · Printed: ${new Date().toLocaleDateString('en-IN')}</div></div>
   <div class="tc"><h2>Payment &amp; Receipt Register</h2><p>SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 · GSTIN: 09ARQPJ8298N1ZI · FY: ${escapeHtml(fy)}</p></div>
   <table><thead><tr><th style="width:5%;text-align:center">S.No.</th><th style="width:11%">Date</th><th style="width:28%">Party Name</th><th style="width:12%;text-align:center">Mode</th><th style="width:14%;text-align:right">Amount (₹)</th><th>Remarks</th></tr></thead><tbody>${tableRows}</tbody></table>
   <div class="summary"><div class="sum-box"><div class="sum-label">Total Receipts</div><div class="sum-val" style="color:#1a7a3c">₹${totalR.toFixed(2)}</div></div><div class="sum-box"><div class="sum-label">Total Payments</div><div class="sum-val" style="color:#b85a00">₹${totalP.toFixed(2)}</div></div><div class="sum-box"><div class="sum-label">Net Balance</div><div class="sum-val">₹${(totalR-totalP).toFixed(2)}</div></div><div class="sum-box"><div class="sum-label">Total Transactions</div><div class="sum-val">${rows.length}</div></div></div>
-  <div class="footer">COMPUTER-GENERATED — SARTHAK SOLUTION SALES, Varanasi · All figures in Indian Rupees (₹)</div></body></html>`);
+  <div class="footer">COMPUTER-GENERATED — FRESH MAGNOVA SOLUTION SALES, Varanasi · All figures in Indian Rupees (₹)</div></body></html>`);
   win.document.close(); win.focus(); setTimeout(()=>win.print(),400);
 }
 
@@ -1871,7 +1874,7 @@ renderPO();renderCF();
 </script>
 
 <div style="text-align:center;padding:8px;font-size:0.72rem;color:#9a9488;border-top:1px solid #e5dfd4;margin-top:12px;font-family:'Satoshi',Arial,sans-serif">
-  © 2025 <strong>Sarthak Solution Sales</strong>, Varanasi. All rights reserved. &nbsp;|&nbsp;
+  © 2025 <strong>Fresh Magnova Solution Sales</strong>, Varanasi. All rights reserved. &nbsp;|&nbsp;
   Unauthorized copying or redistribution is prohibited.
 </div>
 </body>

@@ -16,7 +16,7 @@
   },
   "build": {
     "appId": "com.sarthak.billing",
-    "productName": "Sarthak GST Billing",
+    "productName": "Fresh Magnova GST Billing",
     "files": [
       "**/*",
       "!node_modules"
@@ -34,7 +34,7 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "shortcutName": "Sarthak GST Billing"
+      "shortcutName": "Fresh Magnova GST Billing"
     }
   }
 }

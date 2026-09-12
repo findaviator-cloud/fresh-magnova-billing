@@ -3,3 +3,9 @@ dist/
 node_modules/
 dist/
 package-lock.json
+
+# Fresh Magnova local business configuration
+fresh-magnova.config.json
+
+# Local automatic backups
+.backup/
