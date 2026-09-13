@@ -469,7 +469,7 @@
             <div class="icb-left">FRESH MAGNOVA SOLUTION SALES</div>
             <div class="icb-right">
               SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 (U.P.)<br>
-              Mob: 7007191150 &nbsp;|&nbsp; GSTIN: 09ARQPJ8298N1ZI &nbsp;|&nbsp; State Code: 09
+              Mob: 7007191150 &nbsp;|&nbsp; GSTIN: 09BITPS2455K1ZE &nbsp;|&nbsp; State Code: 09
             </div>
           </div>
 
@@ -493,7 +493,7 @@
                 SA 2/435, Pandeypur, Azamgarh Road,<br>Rai Sahab Bagicha, Varanasi, Uttar Pradesh - 221002
               </div>
               <div style="font-size:.7rem;margin-top:2px">
-                <strong>GSTIN/UIN:</strong> <input class="cinput" id="saleGstin" value="09ARQPJ8298N1ZI" style="width:120px">
+                <strong>GSTIN/UIN:</strong> <input class="cinput" id="saleGstin" value="09BITPS2455K1ZE" style="width:120px">
               </div>
               <div style="font-size:.7rem">
                 <strong>State Name:</strong> Uttar Pradesh, Code: 09
@@ -528,7 +528,7 @@
                   <input class="cinput" id="saleBuyerAddress" value="J8/12, NATI IMALI, VARANASI (U.P.)" style="width:100%">
                 </div>
                 <div style="font-size:.7rem;margin-top:2px;display:flex;gap:8px;flex-wrap:wrap">
-                  <span><strong>GSTIN/PAN:</strong> <input class="cinput" id="saleBuyerGstin" value="09BSYPS3259J2ZM" oninput="validateGstinField(this)" style="width:115px"></span>
+                  <span><strong>GSTIN/PAN:</strong> <input class="cinput" id="saleBuyerGstin" value="09BITPS2455K1ZE" oninput="validateGstinField(this)" style="width:115px"></span>
                   <span><strong>State:</strong> <input class="cinput" id="saleBuyerState" value="UTTAR PRADESH" style="width:100px"></span>
                   <span><strong>State Code:</strong> <input class="cinput" id="saleBuyerStateCode" placeholder="( )" style="width:45px;text-align:center"></span>
                 </div>
@@ -629,7 +629,7 @@
               <td style="width:25%"><span class="cell-label">Supplier Name</span><input class="cinput" id="purchaseParty" value="Sample Supplier" style="width:100%"></td>
               <td style="width:20%"><span class="cell-label">Bill No.</span><input class="cinput" id="purchaseBillNo" value="PB-001"></td>
               <td style="width:20%"><span class="cell-label">Date</span><input class="cinput" id="purchaseDate" type="date"></td>
-              <td style="width:35%"><span class="cell-label">Supplier GSTIN</span><input class="cinput" id="purchaseGstin" value="09ABCDE1234F1Z5" style="width:100%"></td>
+              <td style="width:35%"><span class="cell-label">Supplier GSTIN</span><input class="cinput" id="purchaseGstin" value="09BITPS2455K1ZE" style="width:100%"></td>
             </tr>
           </table>
           <table class="inv-items-table" style="border:1.5px solid #444;border-top:none">
@@ -906,7 +906,7 @@ function downloadInvoicePDF(){
   doc.setFontSize(14);doc.setFont('helvetica','bold');
   doc.text('FRESH MAGNOVA SOLUTION SALES',14,10);
   doc.setFontSize(7);doc.setFont('helvetica','normal');
-  doc.text('SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 | GSTIN: 09ARQPJ8298N1ZI | Mob: 7007191150',14,16);
+  doc.text('SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 | GSTIN: 09BITPS2455K1ZE | Mob: 7007191150',14,16);
   doc.setFontSize(11);doc.setFont('helvetica','bold');
   doc.text('TAX INVOICE',196,10,{align:'right'});
   doc.setFontSize(8);doc.setFont('helvetica','normal');
@@ -1373,7 +1373,7 @@ function printRegister(type){
   win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${title}</title>
   <style>@page{size:A4;margin:10mm 12mm}*{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}body{font-family:Arial,sans-serif;font-size:9pt;color:#111;padding:8mm}.hb{background:linear-gradient(90deg,#0e5c63,#1a7a84);color:#fff;padding:8pt 12pt;border-radius:4pt;margin-bottom:6pt;display:flex;justify-content:space-between}.hb .hl{font-weight:900;font-size:13pt}.hb .hr{font-size:7pt;opacity:.95}.tc{text-align:center;padding:5pt 0;border-bottom:1.5pt solid #ddd;margin-bottom:8pt}.tc h2{font-size:13pt;text-transform:uppercase;letter-spacing:.06em;color:#0e5c63;font-weight:900}.tc p{font-size:7pt;color:#666;margin-top:2pt}table{width:100%;border-collapse:collapse;margin-bottom:8pt}th{background:linear-gradient(90deg,#0e5c63,#1a7a84);color:#fff;padding:4pt 5pt;font-size:7pt;text-transform:uppercase;font-weight:700;letter-spacing:.05em}td{border-bottom:0.5pt solid #ddd;padding:3.5pt 5pt}tr:nth-child(even) td{background:#f8fcfc}.summary{display:flex;gap:10pt;margin-top:8pt}.sum-box{flex:1;background:#f8fcfc;border:0.5pt solid #ddd;border-radius:3pt;padding:6pt 8pt}.sum-label{font-size:7pt;color:#888;text-transform:uppercase;font-weight:700;letter-spacing:.06em;margin-bottom:2pt}.sum-val{font-size:13pt;font-weight:900;color:#0e5c63}.footer{margin-top:10pt;padding-top:5pt;border-top:0.5pt solid #ddd;font-size:7pt;color:#888;text-align:center}</style>
   </head><body><div class="hb"><div class="hl">FRESH MAGNOVA SOLUTION SALES</div><div class="hr">${title} · FY: ${fy} · Printed: ${new Date().toLocaleDateString('en-IN')}</div></div>
-  <div class="tc"><h2>${title}</h2><p>SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 · GSTIN: 09ARQPJ8298N1ZI · Period: ${dateRange}</p></div>
+  <div class="tc"><h2>${title}</h2><p>SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 · GSTIN: 09BITPS2455K1ZE · Period: ${dateRange}</p></div>
   <table><thead><tr><th style="width:5%;text-align:center">S.No.</th><th style="width:11%">Date</th><th style="width:28%">Party Name</th><th style="width:12%">${isSale?'Invoice No.':'Bill No.'}</th><th style="width:13%;text-align:right">Taxable (₹)</th><th style="width:13%;text-align:right">GST (₹)</th><th style="width:14%;text-align:right">Total (₹)</th></tr></thead>
   <tbody>${rows}</tbody>
   <tfoot><tr style="background:#e8f8f5;font-weight:900"><td colspan="4" style="text-align:right;font-size:8.5pt">TOTAL (${data.length} entries)</td><td style="text-align:right">₹${totTaxable.toFixed(2)}</td><td style="text-align:right">₹${totGst.toFixed(2)}</td><td style="text-align:right;color:#0e5c63;font-size:9.5pt">₹${totGrand.toFixed(2)}</td></tr></tfoot></table>
@@ -1657,10 +1657,10 @@ function printHistRecord(id){
       
     <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#c00" stroke-width="11" stroke-linecap="square"><line x1="50" y1="10" x2="50" y2="90"/><line x1="10" y1="50" x2="90" y2="50"/><polyline points="50,10 75,10 75,35"/><polyline points="90,50 90,75 65,75"/><polyline points="50,90 25,90 25,65"/><polyline points="10,50 10,25 35,25"/></g></svg>
   </div>
-  <div class="cb"><div class="cl">FRESH MAGNOVA SOLUTION SALES</div><div class="cr">SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 (U.P.)<br>Mob: 7007191150 | GSTIN: 09ARQPJ8298N1ZI | State Code: 09</div></div>
+  <div class="cb"><div class="cl">FRESH MAGNOVA SOLUTION SALES</div><div class="cr">SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 (U.P.)<br>Mob: 7007191150 | GSTIN: 09BITPS2455K1ZE | State Code: 09</div></div>
   <table class="bt" style="border-bottom:none"><tr class="title-row"><td style="padding:4pt">Tax Invoice</td></tr></table>
   <div class="hdr-split">
-    <div class="seller-blk"><span class="lbl">Seller (Bill From)</span><div style="font-weight:900;font-size:8pt;color:#0e5c63">FRESH MAGNOVA SOLUTION SALES</div><div style="font-size:7pt;color:#333;line-height:1.5">SA 2/435, Pandeypur, Azamgarh Road, Varanasi - 221002</div><div style="font-size:7pt"><strong>GSTIN:</strong> 09ARQPJ8298N1ZI | <strong>State Code:</strong> 09</div></div>
+    <div class="seller-blk"><span class="lbl">Seller (Bill From)</span><div style="font-weight:900;font-size:8pt;color:#0e5c63">FRESH MAGNOVA SOLUTION SALES</div><div style="font-size:7pt;color:#333;line-height:1.5">SA 2/435, Pandeypur, Azamgarh Road, Varanasi - 221002</div><div style="font-size:7pt"><strong>GSTIN:</strong> 09BITPS2455K1ZE | <strong>State Code:</strong> 09</div></div>
     <div class="meta-grid" style="border-left:0.5pt solid #888">
       <div class="mc" style="background:#fff0f0"><span class="lbl">Invoice No.</span><span class="val" style="color:#cc0000;font-weight:900;font-size:1.1rem">${escapeHtml(r.invno||'')}</span></div>
       <div class="mc"><span class="lbl">Date</span><span class="val" style="font-weight:800;font-size:.92rem">${r.date?new Date(r.date).toLocaleDateString('en-IN'):''}</span></div>
@@ -1700,7 +1700,7 @@ function printHistRecord(id){
     <div class="bd"><strong>Declaration:</strong> We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.<br><em>THIS IS A COMPUTER-GENERATED INVOICE.</em> All disputes subject to <strong>Varanasi Jurisdiction.</strong></div>
     <div class="sb">
       <div class="co">M/s FRESH MAGNOVA SOLUTION SALES</div>
-      <svg width="70" height="70" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg"><circle cx="210" cy="210" r="190" stroke="#0e5c63" stroke-width="8" fill="rgba(14,92,99,.04)"/><circle cx="210" cy="210" r="150" stroke="#0e5c63" stroke-width="3" fill="none"/><defs><path id="pst2" d="M75,110 A165,165 0 0,1 345,110" fill="none"/><path id="psb2" d="M75,310 A165,165 0 0,0 345,310" fill="none"/></defs><text font-size="20" fill="#0e5c63" font-weight="900"><textPath href="#pst2" startOffset="50%" text-anchor="middle">FRESH MAGNOVA SOLUTION SALES</textPath></text><text font-size="14" fill="#0e5c63"><textPath href="#psb2" startOffset="50%" text-anchor="middle">Pandeypur, Varanasi - 221002</textPath></text><text x="210" y="215" text-anchor="middle" fill="#0e5c63" font-weight="900" font-size="28" dominant-baseline="middle">AUTHORIZED</text><text x="210" y="250" text-anchor="middle" fill="#0e5c63" font-size="13" dominant-baseline="middle">09ARQPJ8298N1ZI</text></svg>
+      <svg width="70" height="70" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg"><circle cx="210" cy="210" r="190" stroke="#0e5c63" stroke-width="8" fill="rgba(14,92,99,.04)"/><circle cx="210" cy="210" r="150" stroke="#0e5c63" stroke-width="3" fill="none"/><defs><path id="pst2" d="M75,110 A165,165 0 0,1 345,110" fill="none"/><path id="psb2" d="M75,310 A165,165 0 0,0 345,310" fill="none"/></defs><text font-size="20" fill="#0e5c63" font-weight="900"><textPath href="#pst2" startOffset="50%" text-anchor="middle">FRESH MAGNOVA SOLUTION SALES</textPath></text><text font-size="14" fill="#0e5c63"><textPath href="#psb2" startOffset="50%" text-anchor="middle">Pandeypur, Varanasi - 221002</textPath></text><text x="210" y="215" text-anchor="middle" fill="#0e5c63" font-weight="900" font-size="28" dominant-baseline="middle">AUTHORIZED</text><text x="210" y="250" text-anchor="middle" fill="#0e5c63" font-size="13" dominant-baseline="middle">09BITPS2455K1ZE</text></svg>
       <div class="sl">Authorised Signatory</div>
     </div>
   </div>
@@ -1718,7 +1718,7 @@ function printAllPayments(){
   const win=window.open('','_blank','width=900,height=700');
   win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Payment Register</title><style>@page{size:A4;margin:10mm 12mm}*{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}body{font-family:Arial,sans-serif;font-size:9pt;color:#111;padding:8mm}.hb{background:linear-gradient(90deg,#0e5c63,#1a7a84);color:#fff;padding:8pt 12pt;border-radius:4pt;margin-bottom:6pt;display:flex;justify-content:space-between}.hb .hl{font-weight:900;font-size:13pt}.hb .hr{font-size:7pt;opacity:.95}.tc{text-align:center;padding:5pt 0;border-bottom:1.5pt solid #ddd;margin-bottom:8pt}.tc h2{font-size:13pt;text-transform:uppercase;color:#0e5c63;font-weight:900}.tc p{font-size:7pt;color:#666;margin-top:2pt}table{width:100%;border-collapse:collapse;margin-bottom:8pt}th{background:linear-gradient(90deg,#0e5c63,#1a7a84);color:#fff;padding:4pt 5pt;font-size:7pt;text-transform:uppercase;font-weight:700}td{border-bottom:0.5pt solid #ddd;padding:3.5pt 5pt}tr:nth-child(even) td{background:#f8fcfc}.summary{display:flex;gap:10pt;margin-top:8pt}.sum-box{flex:1;background:#f8fcfc;border:0.5pt solid #ddd;border-radius:3pt;padding:6pt 8pt}.sum-label{font-size:7pt;color:#888;text-transform:uppercase;font-weight:700;margin-bottom:2pt}.sum-val{font-size:13pt;font-weight:900;color:#0e5c63}.footer{margin-top:10pt;padding-top:5pt;border-top:0.5pt solid #ddd;font-size:7pt;color:#888;text-align:center}</style></head><body>
   <div class="hb"><div class="hl">FRESH MAGNOVA SOLUTION SALES</div><div class="hr">Payment Register · FY: ${escapeHtml(fy)} · Printed: ${new Date().toLocaleDateString('en-IN')}</div></div>
-  <div class="tc"><h2>Payment &amp; Receipt Register</h2><p>SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 · GSTIN: 09ARQPJ8298N1ZI · FY: ${escapeHtml(fy)}</p></div>
+  <div class="tc"><h2>Payment &amp; Receipt Register</h2><p>SA 2/435, Pandeypur, Azamgarh Road, Varanasi-221002 · GSTIN: 09BITPS2455K1ZE · FY: ${escapeHtml(fy)}</p></div>
   <table><thead><tr><th style="width:5%;text-align:center">S.No.</th><th style="width:11%">Date</th><th style="width:28%">Party Name</th><th style="width:12%;text-align:center">Mode</th><th style="width:14%;text-align:right">Amount (₹)</th><th>Remarks</th></tr></thead><tbody>${tableRows}</tbody></table>
   <div class="summary"><div class="sum-box"><div class="sum-label">Total Receipts</div><div class="sum-val" style="color:#1a7a3c">₹${totalR.toFixed(2)}</div></div><div class="sum-box"><div class="sum-label">Total Payments</div><div class="sum-val" style="color:#b85a00">₹${totalP.toFixed(2)}</div></div><div class="sum-box"><div class="sum-label">Net Balance</div><div class="sum-val">₹${(totalR-totalP).toFixed(2)}</div></div><div class="sum-box"><div class="sum-label">Total Transactions</div><div class="sum-val">${rows.length}</div></div></div>
   <div class="footer">COMPUTER-GENERATED — FRESH MAGNOVA SOLUTION SALES, Varanasi · All figures in Indian Rupees (₹)</div></body></html>`);
