@@ -1562,7 +1562,8 @@ function parseAndFill(){
   document.getElementById('saleVehicle').value=meta.vehicle;
   let items=[],skipped=0;
   const metaLineRe=/^(GSTIN\s*\/\s*PAN|Buyer\s*GSTIN|State\s*Code|State|Mob(?:ile)?\.?|Place\s*of\s*Supply|E-?Way\s*Bill|Transport\s*Mode|Motor\s*Vehicle|Terms\s*of\s*Delivery)\s*[:\-]/i;
-  lines.forEach(line=>{
+  lines.forEach((line,idx)=>{
+    if(idx===0 && (meta.buyer||meta.place||meta.vehicle)) return;
     if(metaLineRe.test(line)) return;
     const it=parseSingleItem(line);
     if(it) items.push(it);
