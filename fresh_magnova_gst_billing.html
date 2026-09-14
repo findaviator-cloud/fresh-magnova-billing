@@ -1561,13 +1561,13 @@ function parseAndFill(){
   document.getElementById('saleTransport').value=meta.transport;
   document.getElementById('saleVehicle').value=meta.vehicle;
   let items=[],skipped=0;
-  const metaLineRe=/^(GSTIN\s*\/\s*PAN|Buyer\s*GSTIN|State\s*Code|State|Mob(?:ile)?\.?|Place\s*of\s*Supply|E-?Way\s*Bill|Transport\s*Mode|Motor\s*Vehicle|Terms\s*of\s*Delivery)\s*[:\-]/i;
+  const metaLineRe=/^(GSTIN\s*\/\s*PAN|Buyer\s*GSTIN|State\s*Code|State|Mob(?:ile)?\.?|Place\s*of\s*Supply|E-?Way\s*Bill(?:\s*No\.?)?|Transport\s*Mode|Motor\s*Vehicle(?:\s*No\.?)?|Terms\s*of\s*Delivery)\s*[:\-]/i;
   lines.forEach((line,idx)=>{
-    if(idx===0 && (meta.buyer||meta.place||meta.vehicle)) return;
     if(metaLineRe.test(line)) return;
     const it=parseSingleItem(line);
-    if(it) items.push(it);
-    else skipped++;
+    if(it){ items.push(it); return; }
+    if(idx===0) return;
+    skipped++;
   });
   if(!items.length){alert('No items extracted.\nFormat: "[qty] [product] at Rs [rate]"'); return;}
   const tbody=document.getElementById('saleItems');
