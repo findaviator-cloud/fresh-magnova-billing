@@ -1474,7 +1474,13 @@ function parseAndFill(){
   document.getElementById('saleTransport').value=meta.transport;
   document.getElementById('saleVehicle').value=meta.vehicle;
   let items=[],skipped=0;
-  lines.forEach(line=>{const it=parseSingleItem(line);if(it) items.push(it);else skipped++;});
+  const metaLineRe=/^(GSTIN\s*\/\s*PAN|Buyer\s*GSTIN|State\s*Code|State|Mob(?:ile)?\.?|Place\s*of\s*Supply|E-?Way\s*Bill|Transport\s*Mode|Motor\s*Vehicle|Terms\s*of\s*Delivery)\s*[:\-]/i;
+  lines.forEach(line=>{
+    if(metaLineRe.test(line)) return;
+    const it=parseSingleItem(line);
+    if(it) items.push(it);
+    else skipped++;
+  });
   if(!items.length){alert('No items extracted.\nFormat: "[qty] [product] at Rs [rate]"'); return;}
   const tbody=document.getElementById('saleItems');
   tbody.innerHTML='';
