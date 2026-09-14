@@ -621,6 +621,13 @@
           <button class="btn primary" onclick="savePurchaseToHistory()">💾 Save to History</button>
           <button class="btn" onclick="addItemRow('purchaseItems')">＋ Add Item</button>
         </div>
+        <div class="card" style="margin-bottom:1rem"><h3>Smart Parser - Purchase (offline)</h3>
+          <textarea id="purchaseParseInput" placeholder="Example: Purchase from M/s ABC Traders, Bill No: PB-045, GSTIN: 09ABCDE1234F1Z5, Date: 2026-09-14&#10;50 HDPE Bags at Rs 22.50" style="width:100%;min-height:80px;border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.6rem;background:var(--color-surface)"></textarea>
+          <div style="margin-top:.5rem;display:flex;align-items:center;gap:.6rem">
+            <button class="btn-parse" onclick="parseAndFillPurchase()">Parse and Fill</button>
+            <span id="purchaseParseStatus" style="font-size:var(--text-xs);color:var(--color-text-muted)"></span>
+          </div>
+        </div>
         <!-- Compact purchase document -->
         <div class="document">
           <div class="inv-company-band"><div class="icb-left">PURCHASE VOUCHER</div><div class="icb-right">Fresh Magnova Consumer Ventures Services</div></div>
@@ -664,6 +671,13 @@
       <!-- ══════════ CREDIT / DEBIT NOTE ══════════ -->
       <section id="notes" class="page">
         <div class="page-head"><div><div class="page-title">Credit / Debit Note</div><p class="muted">Create adjustment notes against sale or purchase vouchers.</p></div></div>
+        <div class="card" style="margin-bottom:1rem"><h3>Smart Parser - Credit/Debit Note (offline)</h3>
+          <textarea id="noteParseInput" placeholder="Example: Credit Note for M/s ABC Traders, Ref: INV-102, Amount: 4500, Reason: Damaged goods returned" style="width:100%;min-height:80px;border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.6rem;background:var(--color-surface)"></textarea>
+          <div style="margin-top:.5rem;display:flex;align-items:center;gap:.6rem">
+            <button class="btn-parse" onclick="parseAndFillNote()">Parse and Fill</button>
+            <span id="noteParseStatus" style="font-size:var(--text-xs);color:var(--color-text-muted)"></span>
+          </div>
+        </div>
         <div class="two-col">
           <div class="card"><h3>Create Note</h3><div class="grid">
             <div style="display:flex;flex-direction:column;gap:.3rem"><label style="font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);font-weight:600">Note Type</label><select id="noteType" style="border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.65rem .8rem;min-height:40px;background:var(--color-surface)"><option>Credit Note</option><option>Debit Note</option></select></div>
@@ -681,6 +695,13 @@
       <section id="payments" class="page">
         <div class="page-head"><div><div class="page-title">Payment Details</div><p class="muted">Track receipts, payments, and outstanding balances.</p></div>
           <div class="toolbar no-print" style="margin-bottom:0"><button class="btn success" onclick="printAllPayments()">🖨️ Print All Payments</button></div>
+        </div>
+        <div class="card" style="margin-bottom:1rem"><h3>Smart Parser - Payment (offline)</h3>
+          <textarea id="paymentParseInput" placeholder="Example: Received from M/s ABC Traders, Amount: 15000, Date: 2026-09-14, Remarks: Cheque no 004521" style="width:100%;min-height:80px;border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.6rem;background:var(--color-surface)"></textarea>
+          <div style="margin-top:.5rem;display:flex;align-items:center;gap:.6rem">
+            <button class="btn-parse" onclick="parseAndFillPayment()">Parse and Fill</button>
+            <span id="paymentParseStatus" style="font-size:var(--text-xs);color:var(--color-text-muted)"></span>
+          </div>
         </div>
         <div class="two-col">
           <div class="card"><h3>Add Payment / Receipt</h3><div class="grid">
@@ -1441,6 +1462,72 @@ function parseMeta(line){
   const tm=line.match(/\b(road|rail|air|courier)\b/i);if(tm) transport='BY '+tm[1].toUpperCase();
   return{buyer,place,transport,vehicle};
 }
+function parseAndFillPurchase(){
+  const raw=document.getElementById('purchaseParseInput').value.trim();
+  const st=document.getElementById('purchaseParseStatus');
+  if(!raw){alert('Please enter purchase details first.'); return;}
+  const supplierM=raw.match(/(?:Purchase\s+from|Supplier(?:\s*Name)?)\s*[:\-]?\s*(?:M\/s\s+)?([A-Za-z0-9\s&\.\-]+?)(?:,|\n|Bill|GSTIN|Date|$)/i);
+  if(supplierM) document.getElementById('purchaseParty').value=supplierM[1].trim();
+  const billM=raw.match(/Bill\s*No\.?\s*[:\-]\s*([A-Za-z0-9\-\/]+)/i);
+  if(billM) document.getElementById('purchaseBillNo').value=billM[1].trim();
+  const gstM=raw.match(/GSTIN\s*[:\-]\s*([A-Z0-9]{15})/i);
+  if(gstM) document.getElementById('purchaseGstin').value=gstM[1].trim();
+  const dateM=raw.match(/Date\s*[:\-]\s*(\d{4}-\d{2}-\d{2})/i);
+  if(dateM) document.getElementById('purchaseDate').value=dateM[1];
+  const lines=raw.split('\n').map(l=>l.replace(/^\s*\d+[\.\)\-]\s*/,'').trim()).filter(l=>l.length>2);
+  const metaLineRe=/^(Purchase\s+from|Supplier|Bill\s*No|GSTIN|Date)\s*[:\-]/i;
+  let items=[],skipped=0;
+  lines.forEach(line=>{
+    if(metaLineRe.test(line)) return;
+    const it=parseSingleItem(line);
+    if(it) items.push(it); else skipped++;
+  });
+  if(items.length){
+    const tbody=document.getElementById('purchaseItems');
+    tbody.innerHTML='';
+    items.forEach(it=>addItemRow('purchaseItems',{desc:it.desc,hsn:it.hsn,qty:Number(it.qty),rate:Number(it.rate),gst:Number(it.gst)}));
+    updateVoucher('purchase');
+  }
+  st.textContent='Parsed '+items.length+' item(s).'+(skipped>0?' '+skipped+' skipped.':'');
+  setTimeout(function(){st.textContent='';},6000);
+}
+
+function parseAndFillNote(){
+  const raw=document.getElementById('noteParseInput').value.trim();
+  const st=document.getElementById('noteParseStatus');
+  if(!raw){alert('Please enter note details first.'); return;}
+  if(/debit\s*note/i.test(raw)) document.getElementById('noteType').value='Debit Note';
+  else if(/credit\s*note/i.test(raw)) document.getElementById('noteType').value='Credit Note';
+  const partyM=raw.match(/(?:for|Party(?:\s*Name)?)\s*[:\-]?\s*(?:M\/s\s+)?([A-Za-z0-9\s&\.\-]+?)(?:,|\n|Ref|Amount|Reason|$)/i);
+  if(partyM) document.getElementById('noteParty').value=partyM[1].trim();
+  const refM=raw.match(/Ref(?:erence)?(?:\s*No\.?)?\s*[:\-]\s*([A-Za-z0-9\-\/]+)/i);
+  if(refM) document.getElementById('noteRef').value=refM[1].trim();
+  const amtM=raw.match(/Amount\s*[:\-]\s*(?:Rs\.?)?\s*([\d,]+(?:\.\d+)?)/i);
+  if(amtM) document.getElementById('noteAmount').value=amtM[1].replace(/,/g,'');
+  const reasonM=raw.match(/Reason\s*[:\-]\s*(.+?)(?:\n|$)/i);
+  if(reasonM) document.getElementById('noteReason').value=reasonM[1].trim();
+  st.textContent='Note details filled. Review and click Save Note.';
+  setTimeout(function(){st.textContent='';},6000);
+}
+
+function parseAndFillPayment(){
+  const raw=document.getElementById('paymentParseInput').value.trim();
+  const st=document.getElementById('paymentParseStatus');
+  if(!raw){alert('Please enter payment details first.'); return;}
+  if(/paid\s*to|payment/i.test(raw) && !/received/i.test(raw)) document.getElementById('paymentMode').value='Payment';
+  else if(/received\s*from|receipt/i.test(raw)) document.getElementById('paymentMode').value='Receipt';
+  const partyM=raw.match(/(?:Received\s*from|Paid\s*to|Party(?:\s*Name)?)\s*[:\-]?\s*(?:M\/s\s+)?([A-Za-z0-9\s&\.\-]+?)(?:,|\n|Amount|Date|Remarks|$)/i);
+  if(partyM) document.getElementById('paymentParty').value=partyM[1].trim();
+  const amtM=raw.match(/Amount\s*[:\-]\s*(?:Rs\.?)?\s*([\d,]+(?:\.\d+)?)/i);
+  if(amtM) document.getElementById('paymentAmount').value=amtM[1].replace(/,/g,'');
+  const dateM=raw.match(/Date\s*[:\-]\s*(\d{4}-\d{2}-\d{2})/i);
+  if(dateM) document.getElementById('paymentDate').value=dateM[1];
+  const remM=raw.match(/Remarks?\s*[:\-]\s*(.+?)(?:\n|$)/i);
+  if(remM) document.getElementById('paymentRemarks').value=remM[1].trim();
+  st.textContent='Payment details filled. Review and click Save Payment.';
+  setTimeout(function(){st.textContent='';},6000);
+}
+
 function extractBuyerDetails(raw){
   const patterns=[
     {id:'saleBuyerGstin', re:/GSTIN\s*\/\s*PAN\s*[:\-]\s*([A-Z0-9]{15})/i},
