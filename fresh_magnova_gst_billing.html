@@ -1441,12 +1441,34 @@ function parseMeta(line){
   const tm=line.match(/\b(road|rail|air|courier)\b/i);if(tm) transport='BY '+tm[1].toUpperCase();
   return{buyer,place,transport,vehicle};
 }
+function extractBuyerDetails(raw){
+  const patterns=[
+    {id:'saleBuyerGstin', re:/GSTIN\s*\/\s*PAN\s*[:\-]\s*([A-Z0-9]{15})/i},
+    {id:'saleBuyerGstin', re:/Buyer\s*GSTIN\s*[:\-]\s*([A-Z0-9]{15})/i},
+    {id:'saleBuyerStateCode', re:/State\s*Code\s*[:\-]\s*(\d{1,2})/i},
+    {id:'saleBuyerState', re:/\bState\s*[:\-]\s*([A-Za-z\s]+?)(?=,|\n|State\s*Code|$)/i},
+    {id:'saleMobile', re:/\bMob(?:ile)?\.?\s*[:\-]\s*(\+?\d[\d\s\-]{7,14})/i},
+    {id:'salePlace', re:/Place\s*of\s*Supply\s*[:\-]\s*([A-Za-z\s,]+?)(?=\n|E-?Way|$)/i},
+    {id:'saleEway', re:/E-?Way\s*Bill\s*No\.?\s*[:\-]\s*([A-Za-z0-9\-\/]+)/i},
+    {id:'saleTransportMode', re:/Transport\s*Mode\s*[:\-]\s*([A-Za-z\s]+?)(?=\n|Motor|$)/i},
+    {id:'saleVehicle', re:/Motor\s*Vehicle\s*No\.?\s*[:\-]\s*([A-Za-z0-9\-]+)/i},
+    {id:'saleTerms', re:/Terms\s*of\s*Delivery\s*[:\-]\s*([A-Za-z0-9\s\.\-\/]+?)(?=\n|$)/i}
+  ];
+  patterns.forEach(p=>{
+    const m=raw.match(p.re);
+    if(m && m[1]){
+      const el=document.getElementById(p.id);
+      if(el){ const val=m[1].trim(); if(val) el.value=val; }
+    }
+  });
+}
 function parseAndFill(){
   const raw=document.getElementById('parseInput').value.trim();
   if(!raw){alert('Please enter invoice description lines first.'); return;}
   const lines=raw.split('\n').map(l=>l.replace(/^\s*\d+[\.\)\-]\s*/,'').trim()).filter(l=>l.length>5);
   if(!lines.length){alert('No valid lines found.'); return;}
   const meta=parseMeta(lines[0]);
+  extractBuyerDetails(raw);
   document.getElementById('saleBuyer').value=meta.buyer;
   document.getElementById('salePlace').value=meta.place;
   document.getElementById('saleTransport').value=meta.transport;
