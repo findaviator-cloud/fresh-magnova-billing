@@ -1558,31 +1558,56 @@ function extractBuyerDetails(raw){
     }
   });
 }
+function detectSegmentType(seg){
+  if(/credit\s*note|debit\s*note/i.test(seg)) return 'notes';
+  if(/purchase\s+from|supplier\s*name|supplier\s*:/i.test(seg)) return 'purchase';
+  if(/received\s*from|paid\s*to|\breceipt\b/i.test(seg)) return 'payments';
+  return 'sale';
+}
+function fillSegment(target, seg){
+  if(target==='sale'){
+    document.getElementById('parseInput').value=seg;
+    parseAndFill();
+  }else if(target==='purchase'){
+    document.getElementById('purchaseParseInput').value=seg;
+    parseAndFillPurchase();
+  }else if(target==='notes'){
+    document.getElementById('noteParseInput').value=seg;
+    parseAndFillNote();
+  }else if(target==='payments'){
+    document.getElementById('paymentParseInput').value=seg;
+    parseAndFillPayment();
+  }
+}
 function masterParseAndRoute(){
   const raw=document.getElementById('masterParseInput').value.trim();
   const st=document.getElementById('masterParseStatus');
   if(!raw){alert('Please paste some text first.'); return;}
-  let target='sale';
-  if(/credit\s*note|debit\s*note/i.test(raw)) target='notes';
-  else if(/purchase\s+from|supplier\s*name|supplier\s*:/i.test(raw)) target='purchase';
-  else if(/received\s*from|paid\s*to|\breceipt\b/i.test(raw)) target='payments';
-  const navBtn=document.querySelector('[data-page="'+target+'"]');
+  const lines=raw.split('\n');
+  const triggerRe=/^(Invoice\s+for|Purchase\s+from|Credit\s*Note\s+for|Debit\s*Note\s+for|Received\s+from|Paid\s+to)/i;
+  let segments=[],current=[];
+  lines.forEach(function(line){
+    if(triggerRe.test(line.trim()) && current.length){
+      segments.push(current.join('\n'));
+      current=[line];
+    }else{
+      current.push(line);
+    }
+  });
+  if(current.length) segments.push(current.join('\n'));
+  if(!segments.length) segments=[raw];
+  const filledTypes=[];
+  let lastTarget='sale';
+  segments.forEach(function(seg){
+    const target=detectSegmentType(seg);
+    fillSegment(target,seg);
+    filledTypes.push(target);
+    lastTarget=target;
+  });
+  const navBtn=document.querySelector('[data-page="'+lastTarget+'"]');
   if(navBtn) navBtn.click();
-  if(target==='sale'){
-    document.getElementById('parseInput').value=raw;
-    parseAndFill();
-  }else if(target==='purchase'){
-    document.getElementById('purchaseParseInput').value=raw;
-    parseAndFillPurchase();
-  }else if(target==='notes'){
-    document.getElementById('noteParseInput').value=raw;
-    parseAndFillNote();
-  }else if(target==='payments'){
-    document.getElementById('paymentParseInput').value=raw;
-    parseAndFillPayment();
-  }
-  st.textContent='Detected: '+target.toUpperCase()+'. Switched and filled.';
-  setTimeout(function(){st.textContent='';},6000);
+  st.textContent='Filled '+segments.length+' section(s): '+filledTypes.map(function(t){return t.toUpperCase();}).join(', ')+'. Showing: '+lastTarget.toUpperCase();
+  setTimeout(function(){st.textContent='';},8000);
 }
 
 function parseAndFill(){
