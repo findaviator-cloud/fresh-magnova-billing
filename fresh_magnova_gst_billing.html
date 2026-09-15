@@ -400,6 +400,14 @@
         <div class="page-head">
           <div><div class="page-title">Business Dashboard</div><p class="muted">Financial year overview — sales, purchases, receivables, stock.</p></div>
         </div>
+        <div class="parser-box no-print">
+          <div class="parser-title"><div class="parser-icon">⚡</div>Master Parser — paste anything, auto-detects Sale / Purchase / Note / Payment</div>
+          <textarea id="masterParseInput" placeholder="Paste any Sale, Purchase, Credit/Debit Note, or Payment text here."></textarea>
+          <div class="parse-row">
+            <button class="btn-parse" onclick="masterParseAndRoute()">⚡ Detect &amp; Fill</button>
+            <span class="parse-status" id="masterParseStatus"></span>
+          </div>
+        </div>
         <div class="grid kpis">
           <div class="card kpi-sales"><div class="kpi-label">Sales</div><div class="kpi-value" id="kpiSales">₹0.00</div></div>
           <div class="card kpi-purchase"><div class="kpi-label">Purchases</div><div class="kpi-value" id="kpiPurchase">₹0.00</div></div>
@@ -1532,6 +1540,7 @@ function extractBuyerDetails(raw){
   const patterns=[
     {id:'saleBuyerGstin', re:/GSTIN\s*\/\s*PAN\s*[:\-]\s*([A-Z0-9]{15})/i},
     {id:'saleBuyerGstin', re:/Buyer\s*GSTIN\s*[:\-]\s*([A-Z0-9]{15})/i},
+    {id:'saleBuyerAddress', re:/(?:Buyer\s*)?Address\s*[:\-]\s*(.+?)(?:\n|$)/i},
     {id:'saleBuyerStateCode', re:/State\s*Code\s*[:\-]\s*(\d{1,2})/i},
     {id:'saleBuyerState', re:/\bState\s*[:\-]\s*([A-Za-z\s]+?)(?=,|\n|State\s*Code|$)/i},
     {id:'saleMobile', re:/\bMob(?:ile)?\.?\s*[:\-]\s*(\+?\d[\d\s\-]{7,14})/i},
@@ -1549,6 +1558,33 @@ function extractBuyerDetails(raw){
     }
   });
 }
+function masterParseAndRoute(){
+  const raw=document.getElementById('masterParseInput').value.trim();
+  const st=document.getElementById('masterParseStatus');
+  if(!raw){alert('Please paste some text first.'); return;}
+  let target='sale';
+  if(/credit\s*note|debit\s*note/i.test(raw)) target='notes';
+  else if(/purchase\s+from|supplier\s*name|supplier\s*:/i.test(raw)) target='purchase';
+  else if(/received\s*from|paid\s*to|\breceipt\b/i.test(raw)) target='payments';
+  const navBtn=document.querySelector('[data-page="'+target+'"]');
+  if(navBtn) navBtn.click();
+  if(target==='sale'){
+    document.getElementById('parseInput').value=raw;
+    parseAndFill();
+  }else if(target==='purchase'){
+    document.getElementById('purchaseParseInput').value=raw;
+    parseAndFillPurchase();
+  }else if(target==='notes'){
+    document.getElementById('noteParseInput').value=raw;
+    parseAndFillNote();
+  }else if(target==='payments'){
+    document.getElementById('paymentParseInput').value=raw;
+    parseAndFillPayment();
+  }
+  st.textContent='Detected: '+target.toUpperCase()+'. Switched and filled.';
+  setTimeout(function(){st.textContent='';},6000);
+}
+
 function parseAndFill(){
   const raw=document.getElementById('parseInput').value.trim();
   if(!raw){alert('Please enter invoice description lines first.'); return;}
