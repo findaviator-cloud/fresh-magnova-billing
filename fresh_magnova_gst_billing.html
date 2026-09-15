@@ -628,6 +628,7 @@
 
           <button class="btn primary" onclick="savePurchaseToHistory()">💾 Save to History</button>
           <button class="btn" onclick="addItemRow('purchaseItems')">＋ Add Item</button>
+          <button class="btn success" onclick="printPurchaseVoucher()">🖨️ Print Purchase Voucher</button>
         </div>
         <div class="card" style="margin-bottom:1rem"><h3>Smart Parser - Purchase (offline)</h3>
           <textarea id="purchaseParseInput" placeholder="Example: Purchase from M/s ABC Traders, Bill No: PB-045, GSTIN: 09ABCDE1234F1Z5, Date: 2026-09-14&#10;50 HDPE Bags at Rs 22.50" style="width:100%;min-height:80px;border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.6rem;background:var(--color-surface)"></textarea>
@@ -694,6 +695,7 @@
             <div style="display:flex;flex-direction:column;gap:.3rem"><label style="font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);font-weight:600">Amount (₹)</label><input id="noteAmount" type="number" min="0" step="0.01" style="border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.65rem .8rem;min-height:40px;background:var(--color-surface)"></div>
             <div style="display:flex;flex-direction:column;gap:.3rem"><label style="font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);font-weight:600">Reason</label><textarea id="noteReason" placeholder="Enter reason for note" style="border:1px solid var(--color-border);border-radius:var(--radius-sm);padding:.65rem .8rem;min-height:80px;background:var(--color-surface);resize:vertical"></textarea></div>
             <button class="btn primary" onclick="saveNote()">💾 Save Note</button>
+            <button class="btn success" onclick="printNote()">🖨️ Print Note</button>
           </div></div>
           <div class="card"><h3>Saved Notes</h3><div class="list" id="notesList"><div class="muted small">No notes saved.</div></div></div>
         </div>
@@ -760,7 +762,7 @@
 
       <!-- ══════════ INVENTORY ══════════ -->
       <section id="inventory" class="page">
-        <div class="page-head"><div><div class="page-title">Inventory</div><p class="muted">Stock adjusts automatically with sale and purchase entries.</p></div></div>
+        <div class="page-head"><div><div class="page-title">Inventory</div><p class="muted">Stock adjusts automatically with sale and purchase entries.</p></div><div class="toolbar no-print"><button class="btn success" onclick="printInventory()">🖨️ Print Inventory</button></div></div>
         <div class="card register-table"><table><thead><tr><th>Item</th><th>HSN</th><th>Inward Qty</th><th>Outward Qty</th><th>Closing Stock</th><th>Value</th></tr></thead><tbody id="inventoryTable"></tbody></table></div>
       </section>
 
@@ -1339,6 +1341,9 @@ function clearSaleForm(){
 }
 
 function printSaleDoc(){ window.print(); }
+function printPurchaseVoucher(){ window.print(); }
+function printNote(){ window.print(); }
+function printInventory(){ window.print(); }
 
 // ── NOTE / PAYMENT ──
 function saveNote(){
