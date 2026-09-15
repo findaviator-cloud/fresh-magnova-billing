@@ -1456,7 +1456,7 @@ function parseSingleItem(line){
 }
 function parseMeta(line){
   let buyer='',place='',transport='BY ROAD',vehicle='';
-  const bm=line.match(/for\s+(M\/s\s+)?(.+?)(?:\s*[—\-–]\s*|\s{2,})/i);
+  const bm=line.match(/for\s+(M\/s\s+)?(.+?)(?:\s*[—\-–]\s*|\s{2,}|$)/i);
   if(bm){const braw=(bm[1]||'')+bm[2].trim();const cm=braw.match(/^(.+?)\s+([A-Z][a-z][\w\s]*)$/);if(cm){buyer=(cm[1].startsWith('M/s')?'':'M/s ')+cm[1].trim();place=cm[2].trim()+', U.P.';}else{buyer=(braw.startsWith('M/s')?'':'M/s ')+braw;}}
   const vm=line.match(/vehicle\s+([A-Z0-9]+(?:\s?[A-Z0-9]+)*)/i);if(vm) vehicle=vm[1].trim().toUpperCase();
   const tm=line.match(/\b(road|rail|air|courier)\b/i);if(tm) transport='BY '+tm[1].toUpperCase();
@@ -1556,10 +1556,10 @@ function parseAndFill(){
   if(!lines.length){alert('No valid lines found.'); return;}
   const meta=parseMeta(lines[0]);
   extractBuyerDetails(raw);
-  document.getElementById('saleBuyer').value=meta.buyer;
-  document.getElementById('salePlace').value=meta.place;
+  if(meta.buyer && !document.getElementById('saleBuyer').value) document.getElementById('saleBuyer').value=meta.buyer;
+  if(meta.place && !document.getElementById('salePlace').value) document.getElementById('salePlace').value=meta.place;
   document.getElementById('saleTransport').value=meta.transport;
-  document.getElementById('saleVehicle').value=meta.vehicle;
+  if(meta.vehicle && !document.getElementById('saleVehicle').value) document.getElementById('saleVehicle').value=meta.vehicle;
   let items=[],skipped=0;
   const metaLineRe=/^(GSTIN\s*\/\s*PAN|Buyer\s*GSTIN|State\s*Code|State|Mob(?:ile)?\.?|Place\s*of\s*Supply|E-?Way\s*Bill(?:\s*No\.?)?|Transport\s*Mode|Motor\s*Vehicle(?:\s*No\.?)?|Terms\s*of\s*Delivery)\s*[:\-]/i;
   lines.forEach((line,idx)=>{
