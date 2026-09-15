@@ -604,8 +604,8 @@
               <div class="inv-footer-right">
                 <div class="inv-totals-rows">
                   <div class="trow"><span>Taxable Amount</span><span id="saleTaxable">₹0.00</span></div>
-                  <div class="trow" id="cgstRow"><span>CGST (2.5%)</span><span id="saleCgst">₹0.00</span></div>
-                  <div class="trow" id="sgstRow"><span>SGST (2.5%)</span><span id="saleSgst">₹0.00</span></div>
+                  <div class="trow" id="cgstRow"><span>CGST (<input id="saleCgstRatePct" type="number" step="0.01" min="0" value="2.5" style="width:45px;text-align:center;border:1px solid var(--color-border);border-radius:4px" oninput="updateVoucher('sale')">%)</span><span id="saleCgst">₹0.00</span></div>
+                  <div class="trow" id="sgstRow"><span>SGST (<input id="saleSgstRatePct" type="number" step="0.01" min="0" value="2.5" style="width:45px;text-align:center;border:1px solid var(--color-border);border-radius:4px" oninput="updateVoucher('sale')">%)</span><span id="saleSgst">₹0.00</span></div>
                   <div class="trow" style="border-bottom:1px dashed #ccc" id="igstRow"><span style="display:flex;align-items:center;gap:4px">IGST (5%) <button onclick="toggleIGST()" id="igstToggleBtn" style="font-size:.6rem;padding:1px 6px;border-radius:8px;border:1px solid #0e5c63;background:#e8f8f5;color:#0e5c63;cursor:pointer;font-weight:700">Apply</button></span><span id="saleIgst" style="color:#0e5c63;font-weight:700">—</span></div>
                   <div class="trow"><span>Round Off</span><span id="saleRoundOff">₹0.00</span></div>
                   <div class="trow grand-total"><span>Grand Total</span><span id="saleGrand">₹0.00</span></div>
@@ -1211,8 +1211,18 @@ function updateVoucher(type){
     if(items[i]){taxable+=item.amount;tax+=item.amount*(item.gst/100);}
   });
   const igst = typeof igstActive !== 'undefined' && igstActive ? tax : 0;
-  const cgst = igstActive ? 0 : tax/2;
-  const sgst = igstActive ? 0 : tax/2;
+  let cgst, sgst;
+  if(type==='sale'){
+    const cgstRateEl=document.getElementById('saleCgstRatePct');
+    const sgstRateEl=document.getElementById('saleSgstRatePct');
+    const cgstRate=cgstRateEl?parseFloat(cgstRateEl.value)||0:2.5;
+    const sgstRate=sgstRateEl?parseFloat(sgstRateEl.value)||0:2.5;
+    cgst = igstActive ? 0 : taxable*(cgstRate/100);
+    sgst = igstActive ? 0 : taxable*(sgstRate/100);
+  }else{
+    cgst = igstActive ? 0 : tax/2;
+    sgst = igstActive ? 0 : tax/2;
+  }
   const grandExact = taxable + tax;
   const grandRounded = Math.round(grandExact);
   const roundOff = grandRounded - grandExact;
