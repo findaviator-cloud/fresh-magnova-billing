@@ -1556,7 +1556,7 @@ function parseAndFill(){
   if(!lines.length){alert('No valid lines found.'); return;}
   const meta=parseMeta(lines[0]);
   extractBuyerDetails(raw);
-  if(meta.buyer && !document.getElementById('saleBuyer').value) document.getElementById('saleBuyer').value=meta.buyer;
+  if(meta.buyer) document.getElementById('saleBuyer').value=meta.buyer;
   if(meta.place && !document.getElementById('salePlace').value) document.getElementById('salePlace').value=meta.place;
   document.getElementById('saleTransport').value=meta.transport;
   if(meta.vehicle && !document.getElementById('saleVehicle').value) document.getElementById('saleVehicle').value=meta.vehicle;
