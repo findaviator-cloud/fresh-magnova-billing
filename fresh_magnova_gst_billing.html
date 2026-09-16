@@ -1032,7 +1032,7 @@ function deletePurchase(i){
 
 function printLedger(){
   const fy=document.getElementById('financialYear').value;
-  const el=document.getElementById('ledgerBody');
+  const el=document.getElementById('ledgerTable');
   const w=window.open('','_blank');
   w.document.write(`<!DOCTYPE html><html><head><title>Ledger — ${fy}</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px;text-align:left}th{background:#e8f8f5;font-weight:700}td:last-child,td:nth-child(3),td:nth-child(4),td:nth-child(5){text-align:right}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}</style></head><body>
   <h2>Ledger Display — FY: ${fy}</h2>
@@ -1044,11 +1044,14 @@ function printLedger(){
 
 function printGSTReports(){
   const fy=document.getElementById('financialYear').value;
-  const el=document.getElementById('gstReportBody');
+  const out=document.getElementById('gstOutput');
+  const inp=document.getElementById('gstInput');
+  const net=document.getElementById('gstNet');
+  const el=document.getElementById('gstSummary');
   const w=window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html><head><title>GST Report — ${fy}</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px;text-align:left}th{background:#e8f8f5;font-weight:700}td:not(:first-child){text-align:right}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}</style></head><body>
+  w.document.write(`<!DOCTYPE html><html><head><title>GST Report — ${fy}</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px;text-align:left}th{background:#e8f8f5;font-weight:700}td:not(:first-child){text-align:right}.kpi{display:flex;gap:14px;margin:12px 0}.kpi div{border:1px solid #ccc;padding:8px 14px;border-radius:6px;flex:1}.kpi b{display:block;font-size:12pt;color:#0e5c63}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}</style></head><body>
   <h2>GST Report — FY: ${fy}</h2>
-  <table><thead><tr><th>Month</th><th>Taxable</th><th>CGST</th><th>SGST</th><th>IGST</th><th>Total Tax</th></tr></thead><tbody>${el?el.innerHTML:''}</tbody></table>
+  <div class="kpi"><div>Output Tax<b>${out?out.textContent:""}</b></div><div>Input Tax<b>${inp?inp.textContent:""}</b></div><div>Net GST Payable<b>${net?net.textContent:""}</b></div></div><h3>GST Return Summary</h3><div>${el?el.innerHTML:""}</div>
   <div class="footer">FRESH MAGNOVA CONSUMER VENTURES SERVICES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
   </body></html>`);
   w.document.close(); w.print();
@@ -1082,7 +1085,7 @@ function printPurchaseOrders(){
 
 function printLedger(){
   const fy=document.getElementById('financialYear').value;
-  const el=document.getElementById('ledgerBody');
+  const el=document.getElementById('ledgerTable');
   const w=window.open('','_blank');
   w.document.write(`<!DOCTYPE html><html><head><title>Ledger — ${fy}</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px;text-align:left}th{background:#e8f8f5;font-weight:700}td:last-child,td:nth-child(3),td:nth-child(4),td:nth-child(5){text-align:right}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}</style></head><body>
   <h2>Ledger Display — FY: ${fy}</h2>
@@ -1094,11 +1097,14 @@ function printLedger(){
 
 function printGSTReports(){
   const fy=document.getElementById('financialYear').value;
-  const el=document.getElementById('gstReportBody');
+  const out=document.getElementById('gstOutput');
+  const inp=document.getElementById('gstInput');
+  const net=document.getElementById('gstNet');
+  const el=document.getElementById('gstSummary');
   const w=window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html><head><title>GST Report — ${fy}</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px;text-align:left}th{background:#e8f8f5;font-weight:700}td:not(:first-child){text-align:right}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}</style></head><body>
+  w.document.write(`<!DOCTYPE html><html><head><title>GST Report — ${fy}</title><style>body{font-family:Arial,sans-serif;font-size:9pt;margin:20px}h2{color:#0e5c63}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:5px 8px;text-align:left}th{background:#e8f8f5;font-weight:700}td:not(:first-child){text-align:right}.kpi{display:flex;gap:14px;margin:12px 0}.kpi div{border:1px solid #ccc;padding:8px 14px;border-radius:6px;flex:1}.kpi b{display:block;font-size:12pt;color:#0e5c63}.footer{margin-top:20px;font-size:8pt;color:#888;text-align:center}</style></head><body>
   <h2>GST Report — FY: ${fy}</h2>
-  <table><thead><tr><th>Month</th><th>Taxable</th><th>CGST</th><th>SGST</th><th>IGST</th><th>Total Tax</th></tr></thead><tbody>${el?el.innerHTML:''}</tbody></table>
+  <div class="kpi"><div>Output Tax<b>${out?out.textContent:""}</b></div><div>Input Tax<b>${inp?inp.textContent:""}</b></div><div>Net GST Payable<b>${net?net.textContent:""}</b></div></div><h3>GST Return Summary</h3><div>${el?el.innerHTML:""}</div>
   <div class="footer">FRESH MAGNOVA CONSUMER VENTURES SERVICES, Varanasi · Printed: ${new Date().toLocaleDateString('en-IN')}</div>
   </body></html>`);
   w.document.close(); w.print();
@@ -1346,6 +1352,46 @@ function clearSaleForm(){
 }
 
 function printSaleDoc(){ window.print(); }
+
+function loadNote(i){
+  const n=state.notes[i]; if(!n) return;
+  document.getElementById('noteType').value=n.type||'Credit Note';
+  document.getElementById('noteParty').value=n.party||'';
+  document.getElementById('noteRef').value=n.ref||'';
+  document.getElementById('noteAmount').value=n.amount||0;
+  document.getElementById('noteReason').value=n.reason||'';
+  const b=document.querySelector('[data-page="notes"]'); if(b) b.click();
+  showToast('Note loaded into the form.');
+}
+
+function loadPayment(i){
+  const p=state.payments[i]; if(!p) return;
+  document.getElementById('paymentMode').value=p.mode||'Receipt';
+  document.getElementById('paymentParty').value=p.party||'';
+  document.getElementById('paymentAmount').value=p.amount||0;
+  document.getElementById('paymentDate').value=p.date||today();
+  document.getElementById('paymentRemarks').value=p.remarks||'';
+  const b=document.querySelector('[data-page="payments"]'); if(b) b.click();
+  showToast('Payment loaded into the form.');
+}
+
+function loadPurchaseRecord(i){
+  const p=state.purchases[i]; if(!p) return;
+  document.getElementById('purchaseParty').value=p.party||'';
+  document.getElementById('purchaseBillNo').value=p.ref||'';
+  document.getElementById('purchaseDate').value=p.date||today();
+  const tb=document.getElementById('purchaseItems');
+  if(tb && p.items && p.items.length){
+    tb.innerHTML='';
+    p.items.forEach(function(it){
+      addItemRow('purchaseItems',{desc:it.desc,hsn:it.hsn,qty:it.qty,
+        rate:it.rate,gst:it.gst||5,pkg:it.pkg||''});
+    });
+    updateVoucher('purchase');
+  }
+  const b=document.querySelector('[data-page="purchase"]'); if(b) b.click();
+  showToast('Purchase bill loaded into the form.');
+}
 function printPurchaseVoucher(){ window.print(); }
 function printNote(){ window.print(); }
 function printInventory(){ window.print(); }
@@ -1371,14 +1417,14 @@ function savePayment(){
 // ── RENDER ──
 function renderNotes(){
   const el=document.getElementById('notesList');
-  el.innerHTML=state.notes.length?state.notes.map((n,i)=>`<div class="list-item"><div><strong>${escapeHtml(n.type)}</strong><div class="tiny muted">${escapeHtml(n.party)} · ${escapeHtml(n.ref)}</div><div class="small">${escapeHtml(n.reason)}</div></div><div style="display:flex;align-items:center;gap:8px">${inr(n.amount)}<button onclick="deleteNote(${i})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></div></div>`).join(''):'<div class="muted small">No notes saved.</div>';
+  el.innerHTML=state.notes.length?state.notes.map((n,i)=>`<div class="list-item"><div><strong>${escapeHtml(n.type)}</strong><div class="tiny muted">${escapeHtml(n.party)} · ${escapeHtml(n.ref)}</div><div class="small">${escapeHtml(n.reason)}</div></div><div style="display:flex;align-items:center;gap:8px">${inr(n.amount)}<button onclick="loadNote(${i})" style="border:none;background:rgba(14,92,99,.12);color:#0e5c63;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem;font-weight:700">Load</button><button onclick="deleteNote(${i})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></div></div>`).join(''):'<div class="muted small">No notes saved.</div>';
 }
 
 function renderPayments(){
   const fy=document.getElementById('financialYear').value;
   const rows=state.payments.filter(p=>p.fy===fy);
   const el=document.getElementById('paymentList');
-  el.innerHTML=rows.length?rows.map((p,i)=>`<div class="list-item"><div><strong>${escapeHtml(p.party)}</strong><div class="tiny muted">${escapeHtml(p.mode)} · ${escapeHtml(p.date)}</div><div class="small">${escapeHtml(p.remarks||'No remarks')}</div></div><div style="display:flex;align-items:center;gap:8px">${inr(p.amount)}<button onclick="deletePayment(${state.payments.indexOf(p)})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></div></div>`).join(''):'<div class="muted small">No payments saved.</div>';
+  el.innerHTML=rows.length?rows.map((p,i)=>`<div class="list-item"><div><strong>${escapeHtml(p.party)}</strong><div class="tiny muted">${escapeHtml(p.mode)} · ${escapeHtml(p.date)}</div><div class="small">${escapeHtml(p.remarks||'No remarks')}</div></div><div style="display:flex;align-items:center;gap:8px">${inr(p.amount)}<button onclick="loadPayment(${state.payments.indexOf(p)})" style="border:none;background:rgba(14,92,99,.12);color:#0e5c63;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem;font-weight:700">Load</button><button onclick="deletePayment(${state.payments.indexOf(p)})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></div></div>`).join(''):'<div class="muted small">No payments saved.</div>';
 }
 
 function renderRegisters(){
@@ -1391,7 +1437,7 @@ function renderRegisters(){
   const sr=document.getElementById('saleRegister');
   const pr=document.getElementById('purchaseRegister');
   sr.innerHTML=salesFY.map((s,i)=>`<tr><td>${escapeHtml(s.date?new Date(s.date).toLocaleDateString('en-IN'):'')}</td><td>${escapeHtml(s.party)}</td><td>${escapeHtml(s.ref)}</td><td style="text-align:right">${inr(s.taxable||0)}</td><td style="text-align:right">${inr(s.tax||0)}</td><td style="text-align:right;font-weight:700;color:var(--color-primary)">${inr(s.grand)}</td><td class="no-print"><button onclick="deleteSale(${state.sales.indexOf(s)})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></td></tr>`).join()||'<tr><td colspan="7" class="muted">No sale vouchers.</td></tr>';
-  pr.innerHTML=purchFY.map((p,i)=>`<tr><td>${escapeHtml(p.date?new Date(p.date).toLocaleDateString('en-IN'):'')}</td><td>${escapeHtml(p.party)}</td><td>${escapeHtml(p.ref)}</td><td style="text-align:right">${inr(p.taxable||0)}</td><td style="text-align:right">${inr(p.tax||0)}</td><td style="text-align:right;font-weight:700;color:var(--color-primary)">${inr(p.grand)}</td><td class="no-print"><button onclick="deletePurchase(${state.purchases.indexOf(p)})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></td></tr>`).join()||'<tr><td colspan="7" class="muted">No purchase vouchers.</td></tr>';
+  pr.innerHTML=purchFY.map((p,i)=>`<tr><td>${escapeHtml(p.date?new Date(p.date).toLocaleDateString('en-IN'):'')}</td><td>${escapeHtml(p.party)}</td><td>${escapeHtml(p.ref)}</td><td style="text-align:right">${inr(p.taxable||0)}</td><td style="text-align:right">${inr(p.tax||0)}</td><td style="text-align:right;font-weight:700;color:var(--color-primary)">${inr(p.grand)}</td><td class="no-print"><button onclick="loadPurchaseRecord(${state.purchases.indexOf(p)})" style="border:none;background:rgba(14,92,99,.12);color:#0e5c63;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem;font-weight:700">Load</button><button onclick="deletePurchase(${state.purchases.indexOf(p)})" style="border:none;background:rgba(155,37,88,.1);color:#9b2558;border-radius:3px;padding:2px 7px;cursor:pointer;font-size:.7rem">🗑️</button></td></tr>`).join()||'<tr><td colspan="7" class="muted">No purchase vouchers.</td></tr>';
   const sc=document.getElementById('saleRegCount'); if(sc) sc.textContent=salesFY.length?`(${salesFY.length} entries)`:'';
   const pc=document.getElementById('purchaseRegCount'); if(pc) pc.textContent=purchFY.length?`(${purchFY.length} entries)`:'';
   const st=document.getElementById('saleRegTotal');
@@ -1708,7 +1754,7 @@ function loadHistRecord(id){
   document.getElementById('saleLR').value=r.lr||'';
   document.getElementById('saleTerms').value=r.terms||'';
   if(r.buyeraddress) document.getElementById('saleBuyerAddress').value=r.buyeraddress;
-  if(r.buyercontact) document.getElementById('saleBuyerContact').value=r.buyercontact;
+  if(r.buyercontact && document.getElementById('saleBuyerContact')) document.getElementById('saleBuyerContact').value=r.buyercontact;
   if(r.buyerstate) document.getElementById('saleBuyerState').value=r.buyerstate;
   if(r.bankAccName) document.getElementById('bankAccName').value=r.bankAccName;
   if(r.bankName) document.getElementById('bankName').value=r.bankName;
@@ -1790,7 +1836,7 @@ function updateHistRecord(){
   if(!invno){alert('Please enter an Invoice Number.'); return;}
   const calc=updateVoucher('sale');
   const dateVal=document.getElementById('saleDate').value||today();
-  const rec={id:editingHistId,savedAt:new Date().toLocaleString('en-IN'),year:getYear(dateVal),invno,date:dateVal,buyername:document.getElementById('saleBuyer').value,buyergstin:document.getElementById('saleBuyerGstin').value,buyeraddress:document.getElementById('saleBuyerAddress').value,buyercontact:document.getElementById('saleBuyerContact').value,buyerstate:document.getElementById('saleBuyerState').value,place:document.getElementById('salePlace').value,transport:document.getElementById('saleTransport').value,vehicle:document.getElementById('saleVehicle').value,ewaybill:document.getElementById('saleEway').value,lr:document.getElementById('saleLR').value,terms:document.getElementById('saleTerms').value,items:readItems('saleItems'),total:document.getElementById('saleGrand').textContent,...calc,bankAccName:document.getElementById('bankAccName').value,bankName:document.getElementById('bankName').value,bankIfsc:document.getElementById('bankIfsc').value,bankAccNo:document.getElementById('bankAccNo').value,bankBranch:document.getElementById('bankBranch').value};
+  const rec={id:editingHistId,savedAt:new Date().toLocaleString('en-IN'),year:getYear(dateVal),invno,date:dateVal,buyername:document.getElementById('saleBuyer').value,buyergstin:document.getElementById('saleBuyerGstin').value,buyeraddress:document.getElementById('saleBuyerAddress').value,buyercontact:document.getElementById('saleBuyerContact')?document.getElementById('saleBuyerContact').value:'',buyerstate:document.getElementById('saleBuyerState').value,place:document.getElementById('salePlace').value,transport:document.getElementById('saleTransport').value,vehicle:document.getElementById('saleVehicle').value,ewaybill:document.getElementById('saleEway').value,lr:document.getElementById('saleLR').value,terms:document.getElementById('saleTerms').value,items:readItems('saleItems'),total:document.getElementById('saleGrand').textContent,...calc,bankAccName:document.getElementById('bankAccName').value,bankName:document.getElementById('bankName').value,bankIfsc:document.getElementById('bankIfsc').value,bankAccNo:document.getElementById('bankAccNo').value,bankBranch:document.getElementById('bankBranch').value};
   const idx=histRecords.findIndex(r=>r.id===editingHistId);
   if(idx>=0) histRecords[idx]=rec;else histRecords.unshift(rec);
   storageSave('sss_v1_records',histRecords);
